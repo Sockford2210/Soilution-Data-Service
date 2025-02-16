@@ -3,37 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.Web", "Soilution.DataService.Web\Soilution.DataService.Web.csproj", "{0BAF0896-28C7-4047-97CE-D869FBBE6FA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.Web", "src\Soilution.DataService.Web\Soilution.DataService.Web.csproj", "{0BAF0896-28C7-4047-97CE-D869FBBE6FA1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{EB4D921B-FB5B-44F7-9B8D-C786ACE9EF0D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "src\Domain", "{EB4D921B-FB5B-44F7-9B8D-C786ACE9EF0D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{CBD44D8B-407A-4A81-8AE8-1B2A156ED460}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "src\UI", "{CBD44D8B-407A-4A81-8AE8-1B2A156ED460}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{96FD2E37-BB0E-43C5-BC5D-9966C9CDA882}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "src\Application", "{96FD2E37-BB0E-43C5-BC5D-9966C9CDA882}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DataRepository", "Domain\Soilution.DataService.DataRepository\Soilution.DataService.DataRepository.csproj", "{7C689488-9F84-423B-A74A-C51ED7203CE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DataRepository", "src\Domain\Soilution.DataService.DataRepository\Soilution.DataService.DataRepository.csproj", "{7C689488-9F84-423B-A74A-C51ED7203CE7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.SqlRepository", "Application\Soilution.DataService.SqlRepository\Soilution.DataService.SqlRepository.csproj", "{14A08058-183C-4B12-94DA-D28DDCE988EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.SqlRepository", "src\Application\Soilution.DataService.SqlRepository\Soilution.DataService.SqlRepository.csproj", "{14A08058-183C-4B12-94DA-D28DDCE988EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.MockedData", "Application\Soilution.DataService.MockedData\Soilution.DataService.MockedData.csproj", "{8029CE7A-2C39-4947-97C0-300A6061E145}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.MockedData", "src\Application\Soilution.DataService.MockedData\Soilution.DataService.MockedData.csproj", "{8029CE7A-2C39-4947-97C0-300A6061E145}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "src\Tests", "{4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.UnitTests.DataManagement", "Tests\Solution.DataService.UnitTests.DataManagement\Soilution.DataService.UnitTests.DataManagement.csproj", "{5BD5044D-2A0A-46DA-A82C-413E636B4098}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.UnitTests.DataManagement", "src\Tests\Solution.DataService.UnitTests.DataManagement\Soilution.DataService.UnitTests.DataManagement.csproj", "{5BD5044D-2A0A-46DA-A82C-413E636B4098}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.Analytics", "Application\Soilution.DataService.Analytics\Soilution.DataService.Analytics.csproj", "{C94C9388-70D5-4E33-BB86-93DA6BAC8454}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.Analytics", "src\Application\Soilution.DataService.Analytics\Soilution.DataService.Analytics.csproj", "{C94C9388-70D5-4E33-BB86-93DA6BAC8454}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DataManagement", "UI\Soilution.DataService.DataManagement\Soilution.DataService.DataManagement.csproj", "{D87B1324-939E-4874-964D-EA7DA6F2BB54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DataManagement", "src\UI\Soilution.DataService.DataManagement\Soilution.DataService.DataManagement.csproj", "{D87B1324-939E-4874-964D-EA7DA6F2BB54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.AnalyticsApi", "UI\Soilution.DataService.AnalyticsApi\Soilution.DataService.AnalyticsApi.csproj", "{97B8E5FC-9A7E-4A74-94E7-9057088E81F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.AnalyticsApi", "src\UI\Soilution.DataService.AnalyticsApi\Soilution.DataService.AnalyticsApi.csproj", "{97B8E5FC-9A7E-4A74-94E7-9057088E81F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DeviceManagement", "UI\Soilution.DataService.DeviceManagement\Soilution.DataService.DeviceManagement.csproj", "{8423775E-E6EE-466E-AD6B-A07E2DBE680F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DeviceManagement", "src\UI\Soilution.DataService.DeviceManagement\Soilution.DataService.DeviceManagement.csproj", "{8423775E-E6EE-466E-AD6B-A07E2DBE680F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.UnitTests.DeviceManagement", "Tests\Soilution.DataService.UnitTests.DeviceManagement\Soilution.DataService.UnitTests.DeviceManagement.csproj", "{EC99989D-FA35-45A6-A861-16CB00C799C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.UnitTests.DeviceManagement", "src\Tests\Soilution.DataService.UnitTests.DeviceManagement\Soilution.DataService.UnitTests.DeviceManagement.csproj", "{EC99989D-FA35-45A6-A861-16CB00C799C6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{4A2ED177-3557-4647-9B84-47944392416B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "src\Database", "{4A2ED177-3557-4647-9B84-47944392416B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soilution.DataService.SqlDatabase", "Database\Soilution.DataService.SqlDatabase\Soilution.DataService.SqlDatabase.csproj", "{665F395F-EEF1-4ABD-B113-1248C32A7A31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Soilution.DataService.SqlDatabase", "src\Database\Soilution.DataService.SqlDatabase\Soilution.DataService.SqlDatabase.csproj", "{665F395F-EEF1-4ABD-B113-1248C32A7A31}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
