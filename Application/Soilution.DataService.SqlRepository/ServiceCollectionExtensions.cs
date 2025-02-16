@@ -13,7 +13,7 @@ namespace Soilution.DataService.SqlRepository
             services.AddScoped<ISoilDataRepository, SoilSQLRepository>();
             services.AddScoped<IDataDeviceRepository, DataDeviceSqlRepository>();
 
-            services.SetupSqlAcessorLayer(configuration);
+            services.Configure<DatabaseAccessorSettings>(configuration.GetSection("Database"));
         }
     }
 }
