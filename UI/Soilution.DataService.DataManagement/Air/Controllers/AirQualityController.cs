@@ -23,7 +23,7 @@ namespace Soilution.DataService.DataManagement.Controllers
         {
             await _dataManager.SubmitAirQualityReading(incomingReading);
 
-            _logger.LogInformation("New Air Quality Reading Submitted: {data}", incomingReading);
+            _logger.LogInformation("New air quality reading submitted: {data}", incomingReading);
 
             return Ok();
         }

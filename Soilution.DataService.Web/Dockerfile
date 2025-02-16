@@ -9,8 +9,8 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Debug
 WORKDIR /src
-COPY ["Soilution.DataService.Web/Soilution.DataService.Web.csproj", "Soilution.DataService.Web/"]
-RUN dotnet restore "./Soilution.DataService.Web/Soilution.DataService.Web.csproj"
+#COPY ["/Soilution.DataService.Web.csproj", "Soilution.DataService.Web/"]
+#RUN dotnet restore "./Soilution.DataService.Web/Soilution.DataService.Web.csproj"
 COPY . .
 WORKDIR "/src/Soilution.DataService.Web"
 RUN dotnet build "./Soilution.DataService.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
