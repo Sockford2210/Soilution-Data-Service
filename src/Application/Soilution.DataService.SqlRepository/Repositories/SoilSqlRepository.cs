@@ -41,7 +41,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
 
             var dBCommand = new DatabaseCommand(insertStatement, parameters);
 
-            return await ExecuteCommandWithSingularOutputValue(dBCommand);
+            return await ExecuteCommandWithSingularOutputValue<int>(dBCommand);
         }
     }
 }

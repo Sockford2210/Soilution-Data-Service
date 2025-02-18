@@ -41,7 +41,7 @@ namespace Soilution.DataService.SqlRepository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to exeucte query");
+                _logger.LogError(ex, "Failed to execute query");
                 throw;
             }
         }
@@ -49,8 +49,9 @@ namespace Soilution.DataService.SqlRepository
         /// <summary>
         /// Execute a single command that returns an output value
         /// </summary>
+        /// <typeparam name="TOutput">Scalar type for query result.</typeparam>
         /// <param name="command">Command to execute.</param>
-        protected async Task<int> ExecuteCommandWithSingularOutputValue(DatabaseCommand command)
+        protected async Task<TOutput?> ExecuteCommandWithSingularOutputValue<TOutput>(DatabaseCommand command)
         {
             try
             {
@@ -64,11 +65,19 @@ namespace Soilution.DataService.SqlRepository
                 }
 
                 sqlCommand.Connection.Open();
-                return (int)await sqlCommand.ExecuteScalarAsync();
+
+                var output = await sqlCommand.ExecuteScalarAsync();
+
+                if (output is TOutput outputCast)
+                {
+                    return outputCast;
+                }
+
+                return default;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to exeucte query");
+                _logger.LogError(ex, "Failed to execute query");
                 throw;
             }
         }
@@ -76,9 +85,9 @@ namespace Soilution.DataService.SqlRepository
         /// <summary>
         /// Execute a single command and maps the results onto a <see cref="DataRecordBase"/>
         /// </summary>
-        /// <typeparam name="T"><see cref="DataRecordBase"/> to map results onto.</typeparam>
+        /// <typeparam name="TOutput"><see cref="DataRecordBase"/> to map results onto.</typeparam>
         /// <param name="command">Command to execute.</param>
-        protected async Task<IEnumerable<T>> ExecuteQueryAndReturnData<T>(DatabaseCommand command) where T : DataRecordBase, new()
+        protected async Task<IEnumerable<TOutput>> ExecuteQueryAndReturnData<TOutput>(DatabaseCommand command) where TOutput : DataRecordBase, new()
         {
             try
             {
@@ -93,11 +102,11 @@ namespace Soilution.DataService.SqlRepository
 
                 sqlCommand.Connection.Open();
 
-                var readings = new List<T>();
+                var readings = new List<TOutput>();
                 using var dataReader = await sqlCommand.ExecuteReaderAsync();
                 while (dataReader.Read())
                 {
-                    var reading = new T();
+                    var reading = new TOutput();
                     reading.PopulateFromDataReader(dataReader);
                     readings.Add(reading);
                 }
