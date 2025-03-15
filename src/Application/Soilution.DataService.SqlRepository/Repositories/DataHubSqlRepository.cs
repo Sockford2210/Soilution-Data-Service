@@ -35,7 +35,10 @@ namespace Soilution.DataService.SqlRepository.Repositories
 
         public async Task<DataHubRecord> GetDataDeviceRecordByName(string name)
         {
-            var queryStatement = $"SELECT TOP 1 FROM {DATA_HUB_TABLE_NAME}" +
+            var queryStatement = $"SELECT TOP (1) [{nameof(DataHubRecord.Id)}]" +
+                $" ,[{nameof(DataHubRecord.Name)}]" +
+                $" ,[{nameof(DataHubRecord.DateCreated)}]" +
+                $" FROM {DATA_HUB_TABLE_NAME}" +
                 $" WHERE {nameof(DataHubRecord.Name)} = {NAME_PARAMETER}";
 
             var parameters = new Dictionary<string, object>

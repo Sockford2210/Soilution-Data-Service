@@ -10,7 +10,8 @@ namespace Soilution.DataService.DataManagement.Air.Processors
         private readonly IAirQualityDataRepository _dataRepository;
         private readonly IDataHubRepository _deviceRepository;
 
-        public AirQualityRecordProcessor(IAirQualityDataRepository dataRepository, IDataHubRepository deviceRepository)
+        public AirQualityRecordProcessor(IAirQualityDataRepository dataRepository, 
+            IDataHubRepository deviceRepository)
         {
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
             _deviceRepository = deviceRepository ?? throw new ArgumentNullException(nameof(deviceRepository));

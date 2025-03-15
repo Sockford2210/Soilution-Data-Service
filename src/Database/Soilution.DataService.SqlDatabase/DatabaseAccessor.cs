@@ -41,7 +41,7 @@ namespace Soilution.DataService.SqlRepository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to execute query");
+                _logger.LogError(ex, "DatabaseAccessor: Failed to execute query");
                 throw;
             }
         }
@@ -77,7 +77,7 @@ namespace Soilution.DataService.SqlRepository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to execute query");
+                _logger.LogError(ex, "DatabaseAccessor: Failed to execute query");
                 throw;
             }
         }
@@ -115,7 +115,7 @@ namespace Soilution.DataService.SqlRepository
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to execute query");
+                _logger.LogError(ex, "DatabaseAccessor: Failed to execute query");
                 throw;
             }
         }

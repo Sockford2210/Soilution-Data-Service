@@ -19,7 +19,7 @@ namespace Soilution.DataService.DeviceManagement.Devices.Controllers
 
         [HttpPost]
         [Route("api/[controller]")]
-        public async Task<ActionResult> AddNewDevice(NewDataHub dataHub)
+        public async Task<ActionResult> AddNewDevice([FromBody] NewDataHub dataHub)
         {
             var deviceName = dataHub.DeviceName;
             try
@@ -33,15 +33,16 @@ namespace Soilution.DataService.DeviceManagement.Devices.Controllers
             }
             catch (Exception ex)
             {
-                var message = $"DataHubController"
-                _logger.LogError(ex,)
+                var message = $"DataHubController: Exception occurred while adding new device - {ex.Message}";
+                _logger.LogError(ex, message);
+                throw;
             }
 
             return Ok();
         }
 
         [HttpGet]
-        [Route("api/[controller]")]
+        [Route("api/[controller]/GetCreatedDate")]
         public async Task<ActionResult> GetDeviceCreatedDate(string deviceName)
         {
             try
@@ -53,6 +54,12 @@ namespace Soilution.DataService.DeviceManagement.Devices.Controllers
             {
                 var message = $"Device with name: {deviceName} does not exist";
                 return BadRequest(message);
+            }
+            catch (Exception ex)
+            {
+                var message = $"DataHubController: Exception occurred while retrieving device details - {ex.Message}";
+                _logger.LogError(ex, message);
+                throw;
             }
         }
     }

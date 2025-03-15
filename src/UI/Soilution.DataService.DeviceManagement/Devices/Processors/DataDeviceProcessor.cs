@@ -7,12 +7,17 @@ namespace Soilution.DataService.DeviceManagement.Devices.Processors
 {
     public class DataDeviceProcessor : IDataDeviceProcessor
     {
+        private readonly ILogger<DataDeviceProcessor> _logger;
         private readonly IDataHubRepository _deviceRepository;
         private readonly IAirQualityDataRepository _airQualityDataRepository;
 
-        public DataDeviceProcessor(IDataHubRepository deviceRepository)
+        public DataDeviceProcessor(ILogger<DataDeviceProcessor> logger,
+            IDataHubRepository deviceRepository, 
+            IAirQualityDataRepository airQualityDataRepository)
         {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _deviceRepository = deviceRepository ?? throw new ArgumentNullException(nameof(deviceRepository));
+            _airQualityDataRepository = airQualityDataRepository ?? throw new ArgumentNullException(nameof(airQualityDataRepository));
         }
 
         public async Task CreateNewDevice(string deviceName)
@@ -21,12 +26,15 @@ namespace Soilution.DataService.DeviceManagement.Devices.Processors
 
             if (existingDeviceWithMatchingName.Exists)
             {
+                var message = $"DataDeviceProcessor: Data device name: {deviceName} is already taken";
+                _logger.LogWarning(message);
                 throw new DeviceNameAlreadyTakenException(deviceName);
             }
 
             var newDeviceRecord = new DataHubRecord
             {
                 Name = deviceName,
+                DateCreated = DateTime.UtcNow,
             };
 
             await _deviceRepository.CreateDataDeviceRecord(newDeviceRecord);
@@ -38,6 +46,8 @@ namespace Soilution.DataService.DeviceManagement.Devices.Processors
 
             if (!deviceRecord.Exists)
             {
+                var message = $"DataDeviceProcessor: Data device with name: {deviceName} does not exist";
+                _logger.LogWarning(message);
                 throw new DeviceDoesNotExistException(deviceName);
             }
 

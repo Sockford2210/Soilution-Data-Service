@@ -3,16 +3,23 @@ using Soilution.DataService.DataRepository.Repositories;
 using Moq;
 using Soilution.DataService.DataRepository.Models;
 using Soilution.DataService.DeviceManagement.Devices.Exceptions;
+using NUnit.Framework.Internal;
+using Microsoft.Extensions.Logging;
 
 namespace Soilution.DataService.UnitTests.DeviceManagement
 {
-    public class Tests
+    public class DataDeviceRecordProcessorTests
     {
-        private static DataDeviceProcessor CreateSubjectUnderTest(Mock<IDataHubRepository>? dataDeviceRepository = null)
+        private static DataDeviceProcessor CreateSubjectUnderTest(Mock<IDataHubRepository>? dataDeviceRepository = null,
+            Mock<IAirQualityDataRepository>? airDataRepository = null)
         {
+            var logger = new Mock<ILogger<DataDeviceProcessor>>();
+            airDataRepository ??= new Mock<IAirQualityDataRepository>();
             dataDeviceRepository ??= new Mock<IDataHubRepository>();
 
-            return new DataDeviceProcessor(dataDeviceRepository.Object);
+            return new DataDeviceProcessor(logger.Object,
+                dataDeviceRepository.Object,
+                airDataRepository.Object);
         }
 
         [TestFixture]

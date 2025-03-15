@@ -10,6 +10,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
     /// </summary>
     internal class AirQualityDataReadingsSqlRepository : DatabaseAccessor, IAirQualityDataRepository
     {
+        private const string AIR_QUALITY_TABLE_NAME = "AirQualityDataReadings";
         private const string DEVICE_ID_PARAMETER = "@DeviceId";
         private const string TIMESTAMP_PARAMETER = "@TimeStamp";
         private const string HUMIDITY_PARAMETER = "@Humidity";
@@ -23,7 +24,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
         /// <inheritdoc/>
         public async Task<int> CreateNewAirQualityRecord(AirQualityDataRecord record)
         {
-            string insertStatement = $"INSERT INTO AirQualityDataReadings ({nameof(AirQualityDataRecord.DeviceId)}" +
+            string insertStatement = $"INSERT INTO {AIR_QUALITY_TABLE_NAME} ({nameof(AirQualityDataRecord.DeviceId)}" +
                 $" ,{nameof(AirQualityDataRecord.Timestamp)}" +
                 $" ,{nameof(AirQualityDataRecord.HumidityPercentage)}" +
                 $" ,{nameof(AirQualityDataRecord.TemperatureCelcius)}" +
@@ -58,7 +59,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
                     $" ,[{nameof(AirQualityDataRecord.HumidityPercentage)}]" +
                     $" ,[{nameof(AirQualityDataRecord.DeviceId)}]" +
                     $" ,[{nameof(AirQualityDataRecord.CO2PPM)}]" +
-                    $" FROM AirQualityDataReadings" +
+                    $" FROM {AIR_QUALITY_TABLE_NAME}" +
                     $" WHERE {nameof(AirQualityDataRecord.DeviceId)} = {DEVICE_ID_PARAMETER}" +
                     $" ORDER BY [{nameof(AirQualityDataRecord.Timestamp)}] DESC";
 
@@ -85,7 +86,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
                     $", MAX({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.MaximumCO2PPM)}" +
                     $", MIN({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.MinimumCO2PPM)}" +
                     $", AVG({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.AverageCO2PPM)}" +
-                    $" FROM AirQualityDataReadings";
+                    $" FROM {AIR_QUALITY_TABLE_NAME}";
 
             var dBCommand = new DatabaseCommand(queryStatement);
 
@@ -96,7 +97,6 @@ namespace Soilution.DataService.SqlRepository.Repositories
 
         public async Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataSinceTimemstamp(DateTime fromTimestamp)
         {
-            const string fromTimestampParameterName = "@FromTimestamp";
             string queryStatement = $"SELECT" +
                     $" MAX({nameof(AirQualityDataRecord.HumidityPercentage)}) AS {nameof(AirQualityDataMaxMinAverage.MaximumHumidityPercentage)}" +
                     $", MIN({nameof(AirQualityDataRecord.HumidityPercentage)}) AS {nameof(AirQualityDataMaxMinAverage.MinimumHumidityPercentage)}" +
@@ -107,12 +107,12 @@ namespace Soilution.DataService.SqlRepository.Repositories
                     $", MAX({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.MaximumCO2PPM)}" +
                     $", MIN({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.MinimumCO2PPM)}" +
                     $", AVG({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.AverageCO2PPM)}" +
-                    $" FROM AirQualityDataReadings" +
-                    $" WHERE {nameof(AirQualityDataRecord.Timestamp)} >= {fromTimestampParameterName}";
+                    $" FROM  {AIR_QUALITY_TABLE_NAME}" +
+                    $" WHERE {nameof(AirQualityDataRecord.Timestamp)} >= {TIMESTAMP_PARAMETER}";
 
             var parameters = new Dictionary<string, object>
             {
-                { fromTimestampParameterName, fromTimestamp }
+                { TIMESTAMP_PARAMETER, fromTimestamp }
             };
 
             var dBCommand = new DatabaseCommand(queryStatement, parameters);
@@ -124,8 +124,8 @@ namespace Soilution.DataService.SqlRepository.Repositories
 
         public async Task<int> GetNumberOfRecordsForDevice(int deviceId)
         {
-            string queryStatement = $"SELECT" +
-                $" COUNT({nameof(AirQualityDataRecord.Id)}) as NumberOfRecords" +
+            string queryStatement = $"SELECT COUNT({nameof(AirQualityDataRecord.Id)}) as NumberOfRecords" +
+                $" FROM {AIR_QUALITY_TABLE_NAME}" +
                 $" WHERE {nameof(AirQualityDataRecord.DeviceId)} = {DEVICE_ID_PARAMETER}";
 
             var parameters = new Dictionary<string, object>
