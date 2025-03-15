@@ -4,7 +4,7 @@ namespace Soilution.DataService.DataManagement.Air.Processors
 {
     public interface IAirQualityRecordProcessor
     {
-        Task<IEnumerable<AirQuality>> GetLatestAirQualityReadings(int count);
+        Task<IEnumerable<AirQuality>> GetLatestAirQualityReadings(string deviceName, int count);
         Task SubmitAirQualityReading(IncomingAirQualityReading airQuality);
     }
 }

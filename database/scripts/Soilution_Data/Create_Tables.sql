@@ -1,10 +1,11 @@
 USE Soilution_Data
 
-CREATE TABLE DataDevices (
+CREATE TABLE DataHubs (
 	Id INT IDENTITY(1,1),
 	Name VARCHAR(255),
+	DateCreated DATETIME NOT NULL,
 	PRIMARY KEY (Id)
-)
+);
 
 CREATE TABLE AirQualityDataReadings (
     Id INT IDENTITY(1,1),

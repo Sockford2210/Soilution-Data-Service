@@ -8,9 +8,9 @@ namespace Soilution.DataService.UnitTests.DeviceManagement
 {
     public class Tests
     {
-        private static DataDeviceProcessor CreateSubjectUnderTest(Mock<IDataDeviceRepository>? dataDeviceRepository = null)
+        private static DataDeviceProcessor CreateSubjectUnderTest(Mock<IDataHubRepository>? dataDeviceRepository = null)
         {
-            dataDeviceRepository ??= new Mock<IDataDeviceRepository>();
+            dataDeviceRepository ??= new Mock<IDataHubRepository>();
 
             return new DataDeviceProcessor(dataDeviceRepository.Object);
         }
@@ -21,9 +21,9 @@ namespace Soilution.DataService.UnitTests.DeviceManagement
             [Test]
             public void DataRepositoryCreateDataDeviceRecordThrowsException_ThrowException()
             {
-                var deviceRepository = new Mock<IDataDeviceRepository>();
+                var deviceRepository = new Mock<IDataHubRepository>();
                 var expectedException = new Exception("Expected Message");
-                var dataDeviceRecord = new DataDeviceRecord
+                var dataDeviceRecord = new DataHubRecord
                 {
                     Id = -1,
                     Name = "Default Device"
@@ -31,7 +31,7 @@ namespace Soilution.DataService.UnitTests.DeviceManagement
 
                 deviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
                     .ReturnsAsync(dataDeviceRecord);
-                deviceRepository.Setup(x => x.CreateDataDeviceRecord(It.IsAny<DataDeviceRecord>()))
+                deviceRepository.Setup(x => x.CreateDataDeviceRecord(It.IsAny<DataHubRecord>()))
                     .ThrowsAsync(expectedException);
 
                 var sut = CreateSubjectUnderTest(deviceRepository);
@@ -43,7 +43,7 @@ namespace Soilution.DataService.UnitTests.DeviceManagement
             [Test]
             public void DataRepositoryGetDataDeviceRecordByNameThrowsException_ThrowException()
             {
-                var deviceRepository = new Mock<IDataDeviceRepository>();
+                var deviceRepository = new Mock<IDataHubRepository>();
                 var expectedException = new Exception("Expected Message");
 
                 deviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
@@ -58,9 +58,9 @@ namespace Soilution.DataService.UnitTests.DeviceManagement
             [Test]
             public void DataRepositoryDataDeviceAlreadyExists_ThrowsDeviceNameAlreadyTakenException()
             {
-                var deviceRepository = new Mock<IDataDeviceRepository>();
+                var deviceRepository = new Mock<IDataHubRepository>();
                 var deviceName = "PrexistingDevice";
-                var preExistingDeviceRecord = new DataDeviceRecord
+                var preExistingDeviceRecord = new DataHubRecord
                 {
                     Id = 1,
                     Name = deviceName

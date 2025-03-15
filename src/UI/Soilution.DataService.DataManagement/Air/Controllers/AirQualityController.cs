@@ -28,12 +28,12 @@ namespace Soilution.DataService.DataManagement.Controllers
             return Ok();
         }
 
-        // GET: api/AirData/Latest/{count}
+        // GET: api/AirData/Latest/{deviceName}/{count}
         [HttpGet]
         [Route("api/[controller]")]
-        public async Task<ActionResult<IEnumerable<AirQuality>>> Latest(int count)
+        public async Task<ActionResult<IEnumerable<AirQuality>>> Latest(string deviceName, int count)
         {
-            var readings = await _dataManager.GetLatestAirQualityReadings(count);
+            var readings = await _dataManager.GetLatestAirQualityReadings(deviceName, count);
 
             _logger.LogInformation("{count} readings retrieved.", count);
 

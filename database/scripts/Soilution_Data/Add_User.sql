@@ -12,7 +12,7 @@ GO
 
 USE Soilution_Data
 GRANT SELECT, INSERT
- ON AirQualityDataReadings, SoilDataReadings, DataDevices
+ ON AirQualityDataReadings, SoilDataReadings, DataHubs
 TO DataAPIReadingsUser 
 
 --EXECUTE AS USER = 'DataAPIReadingsUser';

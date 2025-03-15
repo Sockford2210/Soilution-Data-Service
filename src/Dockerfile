@@ -11,7 +11,7 @@ ARG BUILD_CONFIGURATION=Debug
 WORKDIR /src
 COPY . .
 WORKDIR "/src/Soilution.DataService.Web"
-RUN dotnet restore "./Soilution.DataService.Web/Soilution.DataService.Web.csproj"
+RUN dotnet restore "./Soilution.DataService.Web.csproj"
 RUN dotnet build "./Soilution.DataService.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

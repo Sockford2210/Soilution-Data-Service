@@ -1,4 +1,5 @@
-﻿using Soilution.DataService.DataManagement.Air.Models;
+﻿using Soilution.DataService.DataManagement.Air.Exceptions;
+using Soilution.DataService.DataManagement.Air.Models;
 using Soilution.DataService.DataRepository.Models;
 using Soilution.DataService.DataRepository.Repositories;
 
@@ -7,9 +8,9 @@ namespace Soilution.DataService.DataManagement.Air.Processors
     internal class AirQualityRecordProcessor : IAirQualityRecordProcessor
     {
         private readonly IAirQualityDataRepository _dataRepository;
-        private readonly IDataDeviceRepository _deviceRepository;
+        private readonly IDataHubRepository _deviceRepository;
 
-        public AirQualityRecordProcessor(IAirQualityDataRepository dataRepository, IDataDeviceRepository deviceRepository)
+        public AirQualityRecordProcessor(IAirQualityDataRepository dataRepository, IDataHubRepository deviceRepository)
         {
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
             _deviceRepository = deviceRepository ?? throw new ArgumentNullException(nameof(deviceRepository));
@@ -32,9 +33,18 @@ namespace Soilution.DataService.DataManagement.Air.Processors
             await _dataRepository.CreateNewAirQualityRecord(record);
         }
 
-        public async Task<IEnumerable<AirQuality>> GetLatestAirQualityReadings(int count)
+        public async Task<IEnumerable<AirQuality>> GetLatestAirQualityReadings(string deviceName, int count)
         {
-            var readings = await _dataRepository.GetLatestAirQualityRecords(count);
+            var device = await _deviceRepository.GetDataDeviceRecordByName(deviceName);
+
+            if (!device.Exists)
+            {
+                throw new DeviceDoesNotExistException(deviceName);
+            }
+
+            var deviceId = device.Id;
+
+            var readings = await _dataRepository.GetLatestAirQualityRecords(deviceId, count);
 
             var airQualityData = readings.Select(x => new AirQuality()
             {
@@ -51,7 +61,7 @@ namespace Soilution.DataService.DataManagement.Air.Processors
 
         private async Task<int> CreateNewDataDevice(string deviceName)
         {
-            var dataDevice = new DataDeviceRecord
+            var dataDevice = new DataHubRecord
             {
                 Name = deviceName,
             };

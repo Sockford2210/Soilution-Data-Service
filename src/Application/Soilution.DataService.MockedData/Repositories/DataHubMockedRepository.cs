@@ -3,18 +3,18 @@ using Soilution.DataService.DataRepository.Repositories;
 
 namespace Soilution.DataService.MockedData.Repositories
 {
-    internal class DataDeviceMockedRepository : IDataDeviceRepository
+    internal class DataHubMockedRepository : IDataHubRepository
     {
-        public Task<int> CreateDataDeviceRecord(DataDeviceRecord record)
+        public Task<int> CreateDataDeviceRecord(DataHubRecord record)
         {
             return Task.FromResult(1);
         }
 
-        public Task<DataDeviceRecord> GetDataDeviceRecordByName(string name)
+        public Task<DataHubRecord> GetDataDeviceRecordByName(string name)
         {
             if (name == "DefaultDevice")
             {
-                var deviceRecord = new DataDeviceRecord
+                var deviceRecord = new DataHubRecord
                 {
                     Id = 1,
                     Name = name
@@ -24,7 +24,7 @@ namespace Soilution.DataService.MockedData.Repositories
             }
             else
             {
-                return Task.FromResult(new DataDeviceRecord());
+                return Task.FromResult(new DataHubRecord());
             }
         }
     }

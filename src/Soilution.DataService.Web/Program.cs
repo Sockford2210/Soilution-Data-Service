@@ -2,6 +2,7 @@ using Soilution.DataService.DataManagement;
 using Soilution.DataService.SqlRepository;
 using Soilution.DataService.Analytics;
 using Soilution.DataService.MockedData;
+using Soilution.DataService.DeviceManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterDataManagementApps();
+builder.Services.RegisterDeviceManagementApps();
 builder.Services.SetupSQLRepositories(builder.Configuration);
 //builder.Services.SetupMockedRepositories();
 builder.Services.RegisterAnalyticsSuite();

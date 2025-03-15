@@ -20,7 +20,7 @@ namespace Soilution.DataService.DataManagement.Soil.Processors
                 DeviceId = soilData.DeviceId,
                 Timestamp = soilData.Timestamp,
                 MoisturePercentage = soilData.MoisturePercentage,
-                TemperatureCelcius = soilData.TemperatureCelcius,
+                TemperatureCelsius = soilData.TemperatureCelcius,
                 SunlightLumens = soilData.SunlightLumens,
                 PHLevel = soilData.PHLevel,
             };

@@ -19,6 +19,7 @@
     <ProjectReference Include="..\Application\Soilution.DataService.MockedData\Soilution.DataService.MockedData.csproj" />
     <ProjectReference Include="..\Application\Soilution.DataService.SqlRepository\Soilution.DataService.SqlRepository.csproj" />
     <ProjectReference Include="..\UI\Soilution.DataService.DataManagement\Soilution.DataService.DataManagement.csproj" />
+    <ProjectReference Include="..\UI\Soilution.DataService.DeviceManagement\Soilution.DataService.DeviceManagement.csproj" />
   </ItemGroup>
 
 </Project>

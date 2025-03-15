@@ -17,7 +17,7 @@ namespace Soilution.DataService.DataRepository.Repositories
         /// Retrieves latest air quality data records from the database.
         /// </summary>
         /// <param name="count">Number of records to retrieve.</param>
-        Task<IEnumerable<AirQualityDataRecord>> GetLatestAirQualityRecords(int count);
+        Task<IEnumerable<AirQualityDataRecord>> GetLatestAirQualityRecords(int deviceId, int count);
 
         /// <summary>
         /// Retrieves the maximum humidity, temperature and co2 concentration from the air quality records stored in the database.
@@ -29,5 +29,10 @@ namespace Soilution.DataService.DataRepository.Repositories
         /// Only takes into account data from a specific point.
         /// </summary>
         Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataSinceTimemstamp(DateTime fromTimestamp);
+
+        /// <summary>
+        /// Retrieves the total number of air quality records submitted for by a specified device.
+        /// </summary>
+        Task<int> GetNumberOfRecordsForDevice(int deviceId);
     }
 }

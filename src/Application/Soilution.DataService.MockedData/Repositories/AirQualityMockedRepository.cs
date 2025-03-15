@@ -17,7 +17,7 @@ namespace Soilution.DataService.MockedData.Repositories
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<AirQualityDataRecord>> GetLatestAirQualityRecords(int count)
+        public Task<IEnumerable<AirQualityDataRecord>> GetLatestAirQualityRecords(int deviceId, int count)
         {
             IEnumerable<AirQualityDataRecord> results = new List<AirQualityDataRecord>();
 
@@ -26,7 +26,7 @@ namespace Soilution.DataService.MockedData.Repositories
                 results = results.Append(new AirQualityDataRecord()
                 {
                     Id = n,
-                    DeviceId = 1000,
+                    DeviceId = deviceId,
                     CO2PPM = RandomDoubleValue(1000, 9999),
                     HumidityPercentage = RandomDoubleValue(0, 100),
                     TemperatureCelcius = RandomDoubleValue(10, 40),
@@ -61,6 +61,11 @@ namespace Soilution.DataService.MockedData.Repositories
                 MaximumHumidityPercentage = 50,
                 MaximumTemperatureCelcius = 25,
             });
+        }
+
+        public Task<int> GetNumberOfRecordsForDevice(int deviceId)
+        {
+            return Task.FromResult<int>(10);
         }
 
         private double RandomDoubleValue(int minValue, int maxValue)
