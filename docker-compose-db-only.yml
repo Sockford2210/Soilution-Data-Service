@@ -1,12 +1,4 @@
-﻿version: "3.9"  # optional since v1.27.0
-services:
-  web_api:
-    build: ./src
-    container_name: web_api_application
-    ports:
-      - "5000:8080"
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
+﻿services:
   sql_server:
     build:
       context: ./database

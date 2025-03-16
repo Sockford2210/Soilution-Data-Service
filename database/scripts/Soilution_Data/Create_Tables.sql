@@ -15,17 +15,17 @@ CREATE TABLE AirQualityDataReadings (
 	TemperatureCelcius DECIMAL(8,6),
 	CO2PPM DECIMAL(10,6),
 	PRIMARY KEY (Id),
-	FOREIGN KEY (DeviceId) REFERENCES DataDevices(Id)
+	FOREIGN KEY (DeviceId) REFERENCES DataHubs(Id)
 );
 
-CREATE TABLE SoilDataReadings (
-    Id INT IDENTITY(1,1),
-    DeviceId INT NOT NULL,
-	Timestamp DATETIME NOT NULL,
-    MoisturePercentage INT,
-    PHLevel INT,
-	TemperatureCelcius INT,
-	SunlightLumens INT
-	PRIMARY KEY (Id),
-	FOREIGN KEY (DeviceId) REFERENCES DataDevices(Id)
-);
+-- CREATE TABLE SoilDataReadings (
+--     Id INT IDENTITY(1,1),
+--     DeviceId INT NOT NULL,
+-- 	Timestamp DATETIME NOT NULL,
+--     MoisturePercentage INT,
+--     PHLevel INT,
+-- 	TemperatureCelcius INT,
+-- 	SunlightLumens INT
+-- 	PRIMARY KEY (Id),
+-- 	FOREIGN KEY (DeviceId) REFERENCES DataDevices(Id)
+-- );
