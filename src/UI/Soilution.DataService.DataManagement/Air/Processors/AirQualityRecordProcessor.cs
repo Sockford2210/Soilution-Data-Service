@@ -19,7 +19,9 @@ namespace Soilution.DataService.DataManagement.Air.Processors
 
         public async Task SubmitAirQualityReading(IncomingAirQualityReading airQualityReading)
         {
-            var deviceId = _deviceRepository.GetDataDeviceRecordByName(airQualityReading.DeviceName)?.Id
+            var dataDevice = await _deviceRepository.GetDataDeviceRecordByName(airQualityReading.DeviceName);
+
+            var deviceId = dataDevice?.Id
                 ?? await CreateNewDataDevice(airQualityReading.DeviceName);
 
             var record = new AirQualityDataRecord

@@ -42,18 +42,18 @@ namespace Soilution.DataService.DeviceManagement.Devices.Controllers
         }
 
         [HttpGet]
-        [Route("api/[controller]/GetCreatedDate")]
-        public async Task<ActionResult> GetDeviceCreatedDate(string deviceName)
+        [Route("api/[controller]/{deviceName}")]
+        public async Task<ActionResult> GetDeviceDetails(string deviceName)
         {
             try
             {
                 var deviceDetails = await _deviceProcessor.GetDeviceDetailsByDeviceName(deviceName);
-                return Ok(deviceDetails.DateRegistered);
+                return Ok(deviceDetails);
             }
             catch (DeviceDoesNotExistException)
             {
                 var message = $"Device with name: {deviceName} does not exist";
-                return BadRequest(message);
+                return NotFound(message);
             }
             catch (Exception ex)
             {

@@ -56,7 +56,8 @@ namespace Soilution.DataService.DeviceManagement.Devices.Processors
             var deviceDetails = new DataHubDetails
             {
                 DeviceName = deviceRecord.Name,
-                NumberOfRecords = numberOfRecords
+                NumberOfRecords = numberOfRecords,
+                DateRegistered = deviceRecord.DateCreated
             };
 
             return deviceDetails;
