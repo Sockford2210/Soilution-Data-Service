@@ -1,6 +1,6 @@
 ﻿services:
   web_api:
-    build: ./src
+    build: ./src/Soilution.DataService.Web
     container_name: web_api_application
     ports:
       - "5000:8080"

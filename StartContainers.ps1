@@ -7,7 +7,7 @@ param(
 $Dockerfile = ".\docker-compose-db-only.yml"
 
 if ($IncludeWebApp){
-    $Dockerfile = ".\docker-compose-full.yml"
+    $Dockerfile = ".\docker-compose-app.yml"
 }
 
 if ($Rebuild){

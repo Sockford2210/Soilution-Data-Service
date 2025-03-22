@@ -21,8 +21,9 @@ namespace Soilution.DataService.DataManagement.Air.Processors
         {
             var dataDevice = await _deviceRepository.GetDataDeviceRecordByName(airQualityReading.DeviceName);
 
-            var deviceId = dataDevice?.Id
-                ?? await CreateNewDataDevice(airQualityReading.DeviceName);
+            var deviceId = dataDevice.Exists 
+                ? dataDevice.Id
+                : await CreateNewDataDevice(airQualityReading.DeviceName);
 
             var record = new AirQualityDataRecord
             {
@@ -66,6 +67,7 @@ namespace Soilution.DataService.DataManagement.Air.Processors
         {
             var dataDevice = new DataHubRecord
             {
+                DateCreated = DateTime.Now,
                 Name = deviceName,
             };
 
