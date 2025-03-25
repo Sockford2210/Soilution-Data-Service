@@ -1,4 +1,4 @@
-﻿namespace Soilution.DataService.SqlRepository
+﻿namespace Soilution.DataService.SqlDatabase
 {
     /// <summary>
     /// Settings for the database accessor.

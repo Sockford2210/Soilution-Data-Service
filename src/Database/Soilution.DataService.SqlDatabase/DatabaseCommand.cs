@@ -1,4 +1,4 @@
-﻿namespace Soilution.DataService.SqlRepository
+﻿namespace Soilution.DataService.SqlDatabase
 {
     /// <summary>
     /// Base class for paramterised commands to be sent to the database.

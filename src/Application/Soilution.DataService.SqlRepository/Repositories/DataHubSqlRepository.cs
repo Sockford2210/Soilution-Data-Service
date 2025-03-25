@@ -11,9 +11,11 @@ namespace Soilution.DataService.SqlRepository.Repositories
         private const string NAME_PARAMETER = "@Name";
         private const string DATE_CREATED_PARAMETER = "@DateCreated";
 
-        public DataHubSqlRepository(ILogger<DatabaseAccessor> logger, IOptions<DatabaseAccessorSettings> options) 
+        public DataHubSqlRepository(ILogger<DataHubSqlRepository> logger, 
+                IOptions<DatabaseAccessorSettings> options) 
             : base(logger, options){}
 
+        /// <inheritdoc/>
         public async Task<int> CreateDataDeviceRecord(DataHubRecord record)
         {
             var insertStatement = $"INSERT INTO {DATA_HUB_TABLE_NAME} ({nameof(DataHubRecord.Name)}" +
@@ -33,6 +35,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
             return await ExecuteCommandWithSingularOutputValue<int>(dbCommand);
         }
 
+        /// <inheritdoc/>
         public async Task<DataHubRecord> GetDataDeviceRecordByName(string name)
         {
             var queryStatement = $"SELECT TOP (1) [{nameof(DataHubRecord.Id)}]" +

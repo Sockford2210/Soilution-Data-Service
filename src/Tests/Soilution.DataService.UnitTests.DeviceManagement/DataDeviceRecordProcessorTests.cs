@@ -1,6 +1,5 @@
 using Soilution.DataService.DeviceManagement.Devices.Processors;
 using Soilution.DataService.DataRepository.Repositories;
-using Moq;
 using Soilution.DataService.DataRepository.Models;
 using Soilution.DataService.DeviceManagement.Devices.Exceptions;
 using NUnit.Framework.Internal;

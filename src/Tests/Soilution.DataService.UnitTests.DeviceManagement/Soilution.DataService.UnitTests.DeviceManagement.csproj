@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Domain\Soilution.DataService.DataRepository\Soilution.DataService.DataRepository.csproj" />
-    <ProjectReference Include="..\..\UI\Soilution.DataService.DeviceManagement\Soilution.DataService.DeviceManagement.csproj" />
+    <ProjectReference Include="..\..\UI\Soilution.DataService.DeviceManagement\Soilution.DataService.HubManagementApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -18,11 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Soilution.DataService.Analytics\Soilution.DataService.Analytics.csproj" />
+    <ProjectReference Include="..\Application\Soilution.DataService.AirQualityDataProcessing\Soilution.DataService.AirQualityDataProcessing\Soilution.DataService.AirQualityProcessing.csproj" />
+    <ProjectReference Include="..\Application\Soilution.DataService.HubManagement\Soilution.DataService.HubManagement\Soilution.DataService.HubManagement.csproj" />
     <ProjectReference Include="..\Application\Soilution.DataService.MockedData\Soilution.DataService.MockedData.csproj" />
+    <ProjectReference Include="..\Application\Soilution.DataService.SoilQualityProcessing\Soilution.DataService.SoilQualityProcessing\Soilution.DataService.SoilQualityProcessing.csproj" />
     <ProjectReference Include="..\Application\Soilution.DataService.SqlRepository\Soilution.DataService.SqlRepository.csproj" />
-    <ProjectReference Include="..\UI\Soilution.DataService.DataManagement\Soilution.DataService.DataManagement.csproj" />
-    <ProjectReference Include="..\UI\Soilution.DataService.DeviceManagement\Soilution.DataService.DeviceManagement.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,9 @@ namespace Soilution.DataService.SqlRepository.Repositories
         private const string PH_PARAMETER = "@PH";
         private const string TEMPERATURE_PARAMETER = "@Temperature";
         private const string SUNLIGHT_PARAMETER = "@Sunlight";
-        public SoilSQLRepository(ILogger<DatabaseAccessor> logger, IOptions<DatabaseAccessorSettings> options) 
+
+        public SoilSQLRepository(ILogger<SoilSQLRepository> logger, 
+                IOptions<DatabaseAccessorSettings> options) 
             : base(logger, options) { }
 
         /// <inheritdoc/>

@@ -18,7 +18,8 @@ namespace Soilution.DataService.SqlRepository.Repositories
         private const string CO2_PARAMETER = "@CO2";
         private const string READING_COUNT_PARAMETER = "@ReadingCount";
 
-        public AirQualityDataReadingsSqlRepository(ILogger<DatabaseAccessor> logger, IOptions<DatabaseAccessorSettings> options) 
+        public AirQualityDataReadingsSqlRepository(ILogger<AirQualityDataReadingsSqlRepository> logger, 
+                IOptions<DatabaseAccessorSettings> options) 
             : base(logger, options) { }
 
         /// <inheritdoc/>
@@ -74,6 +75,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
             return await ExecuteQueryAndReturnData<AirQualityDataRecord>(dBCommand);
         }
 
+        /// <inheritdoc/>
         public async Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityData()
         {
             string queryStatement = $"SELECT" +
@@ -95,6 +97,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
             return results.FirstOrDefault() ?? new AirQualityDataMaxMinAverage();
         }
 
+        /// <inheritdoc/>
         public async Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataSinceTimemstamp(DateTime fromTimestamp)
         {
             string queryStatement = $"SELECT" +
@@ -122,6 +125,7 @@ namespace Soilution.DataService.SqlRepository.Repositories
             return results.FirstOrDefault() ?? new AirQualityDataMaxMinAverage();
         }
 
+        /// <inheritdoc/>
         public async Task<int> GetNumberOfRecordsForDevice(int deviceId)
         {
             string queryStatement = $"SELECT COUNT({nameof(AirQualityDataRecord.Id)}) as NumberOfRecords" +

@@ -1,8 +1,7 @@
-using Soilution.DataService.DataManagement;
 using Soilution.DataService.SqlRepository;
-using Soilution.DataService.Analytics;
-using Soilution.DataService.MockedData;
-using Soilution.DataService.DeviceManagement;
+using Soilution.DataService.AirQualityProcessing;
+using Soilution.DataService.SoilQualityProcessing;
+using Soilution.DataService.HubManagement;
 using NLog.Web;
 using NLog;
 
@@ -20,11 +19,11 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    builder.Services.RegisterDataManagementApps();
-    builder.Services.RegisterDeviceManagementApps();
+    builder.Services.RegisterSoilQualityProcessingApps();
+    builder.Services.RegisterAirQualityProcessingApps();
+    builder.Services.RegisterHubManagementApps();
     builder.Services.SetupSQLRepositories(builder.Configuration);
     //builder.Services.SetupMockedRepositories();
-    builder.Services.RegisterAnalyticsSuite();
 
     // Logging setup
     builder.Logging.ClearProviders();

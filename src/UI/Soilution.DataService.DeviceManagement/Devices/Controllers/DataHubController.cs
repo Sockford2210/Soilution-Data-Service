@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Soilution.DataService.DeviceManagement.Devices.Exceptions;
-using Soilution.DataService.DeviceManagement.Devices.Models;
-using Soilution.DataService.DeviceManagement.Devices.Processors;
+using Soilution.DataService.DeviceManagement.Processors;
+using Soilution.DataService.HubManagement.Exceptions;
+using Soilution.DataService.HubManagement.Models;
 
 namespace Soilution.DataService.DeviceManagement.Devices.Controllers
 {
     public class DataHubController : ControllerBase
     {
         private readonly ILogger<DataHubController> _logger;
-        private readonly IDataDeviceProcessor _deviceProcessor;
+        private readonly IDataDeviceProcessorService _deviceProcessor;
 
-        public DataHubController(ILogger<DataHubController> logger, 
-            IDataDeviceProcessor deviceProcessor)
+        public DataHubController(ILogger<DataHubController> logger,
+            IDataDeviceProcessorService deviceProcessor)
         {
             _logger = logger;
             _deviceProcessor = deviceProcessor ?? throw new ArgumentNullException(nameof(deviceProcessor));

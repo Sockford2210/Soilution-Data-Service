@@ -1,20 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Soilution.DataService.DataManagement.Air.Exceptions;
-using Soilution.DataService.DataManagement.Air.Models;
-using Soilution.DataService.DataManagement.Air.Processors;
+using Soilution.DataService.AirQualityProcessing.Air.Models;
+using Soilution.DataService.AirQualityProcessingProcessing.Air.Exceptions;
+using Soilution.DataService.AirQualityProcessingProcessing.Air.Services;
 
-namespace Soilution.DataService.DataManagement.Controllers
+namespace Soilution.DataService.DataManagementApi.Controllers
 {
     [ApiController]
     public class AirDataController : ControllerBase
     {
         private readonly ILogger<AirDataController> _logger;
-        private readonly IAirQualityRecordProcessor _dataManager;
+        private readonly IAirQualityProcessorService _dataProcessor;
 
-        public AirDataController(ILogger<AirDataController> logger, IAirQualityRecordProcessor dataManager)
+        public AirDataController(ILogger<AirDataController> logger, IAirQualityProcessorService dataProcessor)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _dataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
+            _dataProcessor = dataProcessor ?? throw new ArgumentNullException(nameof(dataProcessor));
         }
 
         // POST api/AirData
@@ -24,7 +24,7 @@ namespace Soilution.DataService.DataManagement.Controllers
         {
             try
             {
-                await _dataManager.SubmitAirQualityReading(incomingReading);
+                await _dataProcessor.SubmitAirQualityReading(incomingReading);
 
                 _logger.LogInformation($"AirDataController: New air quality reading submitted: {incomingReading}");
 
@@ -46,11 +46,11 @@ namespace Soilution.DataService.DataManagement.Controllers
         // GET: api/AirData/Latest/{deviceName}/{count}
         [HttpGet]
         [Route("api/[controller]")]
-        public async Task<ActionResult<IEnumerable<AirQuality>>> Latest(string deviceName, int count)
+        public async Task<ActionResult<IEnumerable<AirQualityReading>>> Latest(string deviceName, int count)
         {
             try
             {
-                var readings = await _dataManager.GetLatestAirQualityReadings(deviceName, count);
+                var readings = await _dataProcessor.GetLatestAirQualityReadings(deviceName, count);
 
                 _logger.LogInformation($"AirDataController: {count} readings retrieved for device: {deviceName}.");
 

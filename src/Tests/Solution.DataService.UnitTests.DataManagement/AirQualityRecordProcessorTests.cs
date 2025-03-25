@@ -1,5 +1,4 @@
-﻿using Moq;
-using Soilution.DataService.DataRepository.Repositories;
+﻿using Soilution.DataService.DataRepository.Repositories;
 using Soilution.DataService.DataManagement.Air.Processors;
 using Soilution.DataService.DataRepository.Models;
 using Soilution.DataService.DataManagement.Air.Models;
@@ -168,12 +167,12 @@ namespace Soilution.DataService.UnitTests.DataManagement
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(result.Id, Is.EqualTo(expectedAirQuality.Id));
-                    Assert.That(result.DeviceId, Is.EqualTo(expectedAirQuality.DeviceId));
-                    Assert.That(result.Timestamp, Is.EqualTo(expectedAirQuality.Timestamp));
-                    Assert.That(result.Co2ppm, Is.EqualTo(expectedAirQuality.Co2ppm));
-                    Assert.That(result.HumidityPercentage, Is.EqualTo(expectedAirQuality.HumidityPercentage));
-                    Assert.That(result.TemperatureCelcius, Is.EqualTo(expectedAirQuality.TemperatureCelcius));
+                    Assert.That(result?.Id, Is.EqualTo(expectedAirQuality.Id));
+                    Assert.That(result?.DeviceId, Is.EqualTo(expectedAirQuality.DeviceId));
+                    Assert.That(result?.Timestamp, Is.EqualTo(expectedAirQuality.Timestamp));
+                    Assert.That(result?.Co2ppm, Is.EqualTo(expectedAirQuality.Co2ppm));
+                    Assert.That(result?.HumidityPercentage, Is.EqualTo(expectedAirQuality.HumidityPercentage));
+                    Assert.That(result?.TemperatureCelcius, Is.EqualTo(expectedAirQuality.TemperatureCelcius));
                 });
             }
         }

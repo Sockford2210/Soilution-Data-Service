@@ -1,4 +1,3 @@
-using Moq;
 using Soilution.DataService.DataManagement.Soil.Models;
 using Soilution.DataService.DataManagement.Soil.Processors;
 using Soilution.DataService.DataRepository.Models;

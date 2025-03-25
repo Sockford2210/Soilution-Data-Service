@@ -7,8 +7,4 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Application\Soilution.DataService.Analytics\Soilution.DataService.Analytics.csproj" />
-  </ItemGroup>
-
 </Project>
