@@ -4,7 +4,7 @@ param(
     [switch]$IncludeWebApp
 )
 
-$Dockerfile = ".\docker-compose-db-only.yml"
+$Dockerfile = ".\docker-compose-db.yml"
 
 if ($IncludeWebApp){
     $Dockerfile = ".\docker-compose-app.yml"
