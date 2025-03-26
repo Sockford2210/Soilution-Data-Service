@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Soilution.DataService.DataRepository.Models.Base;
 
 namespace Soilution.DataService.SqlDatabase
 {
@@ -82,11 +83,11 @@ namespace Soilution.DataService.SqlDatabase
         }
 
         /// <summary>
-        /// Execute a single command and maps the results onto a <see cref="DatabaseRecord"/>
+        /// Execute a single command and maps the results onto a <see cref="DataRecordBase"/>
         /// </summary>
-        /// <typeparam name="TOutput"><see cref="DatabaseRecord"/> to map results onto.</typeparam>
+        /// <typeparam name="TOutput"><see cref="DataRecordBase"/> to map results onto.</typeparam>
         /// <param name="command">Command to execute.</param>
-        protected async Task<IEnumerable<TOutput>> ExecuteQueryAndReturnData<TOutput>(DatabaseCommand command) where TOutput : DatabaseRecord, new()
+        protected async Task<IEnumerable<TOutput>> ExecuteQueryAndReturnData<TOutput>(DatabaseCommand command) where TOutput : DataRecordBase, new()
         {
             try
             {

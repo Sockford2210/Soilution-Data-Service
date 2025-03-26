@@ -1,22 +1,22 @@
-using Soilution.DataService.DeviceManagement.Devices.Processors;
 using Soilution.DataService.DataRepository.Repositories;
 using Soilution.DataService.DataRepository.Models;
-using Soilution.DataService.DeviceManagement.Devices.Exceptions;
 using NUnit.Framework.Internal;
 using Microsoft.Extensions.Logging;
+using Soilution.DataService.HubManagement.Processors;
+using Soilution.DataService.HubManagement.Exceptions;
 
 namespace Soilution.DataService.UnitTests.DeviceManagement
 {
     public class DataDeviceRecordProcessorTests
     {
-        private static DataDeviceProcessor CreateSubjectUnderTest(Mock<IDataHubRepository>? dataDeviceRepository = null,
+        private static DataDeviceProcessorService CreateSubjectUnderTest(Mock<IDataHubRepository>? dataDeviceRepository = null,
             Mock<IAirQualityDataRepository>? airDataRepository = null)
         {
-            var logger = new Mock<ILogger<DataDeviceProcessor>>();
+            var logger = new Mock<ILogger<DataDeviceProcessorService>>();
             airDataRepository ??= new Mock<IAirQualityDataRepository>();
             dataDeviceRepository ??= new Mock<IDataHubRepository>();
 
-            return new DataDeviceProcessor(logger.Object,
+            return new DataDeviceProcessorService(logger.Object,
                 dataDeviceRepository.Object,
                 airDataRepository.Object);
         }

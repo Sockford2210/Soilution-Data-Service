@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\Soilution.DataService.HubManagement\Soilution.DataService.HubManagement.csproj" />
+    <ProjectReference Include="..\..\Application\Soilution.DataService.AirQualityProcessing\Soilution.DataService.AirQualityProcessing.csproj" />
     <ProjectReference Include="..\..\Domain\Soilution.DataService.DataRepository\Soilution.DataService.DataRepository.csproj" />
   </ItemGroup>
 
