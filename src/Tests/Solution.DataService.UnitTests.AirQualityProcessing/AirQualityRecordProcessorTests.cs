@@ -75,7 +75,12 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                 airDataRepository.Setup(x => x.CreateNewAirQualityRecord(It.IsAny<AirQualityDataRecord>()))
                     .Throws(expectedException);
 
-                var sut = CreateSubjectUnderTest(airDataRepository: airDataRepository);
+                var dataDeviceRepository = new Mock<IDataHubRepository>();
+                dataDeviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                    .ReturnsAsync(DefaultDataHubRecord);
+
+                var sut = CreateSubjectUnderTest(airDataRepository: airDataRepository,
+                    dataDeviceRepository: dataDeviceRepository);
 
                 var airQuality = new IncomingAirQualityReading();
                 var actualException = Assert.ThrowsAsync<Exception>(async () 
@@ -86,15 +91,19 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
             [Test]
             public async Task DataRepositoryDoesNotThrowException_DoesNothing()
             {
+                var dataDeviceRepository = new Mock<IDataHubRepository>();
                 var airQuality = new IncomingAirQualityReading();
-                var sut = CreateSubjectUnderTest();
+
+                dataDeviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                    .ReturnsAsync(DefaultDataHubRecord);
+
+                var sut = CreateSubjectUnderTest(dataDeviceRepository: dataDeviceRepository);
 
                 await sut.SubmitAirQualityReading(airQuality);
 
                 Assert.Pass();
             }
         }
-
 
         [TestFixture]
         public class AirQualityProcessorService_GetLatestAirQualityReadings
