@@ -3,7 +3,7 @@ using Soilution.DataService.DataRepository.Models.Base;
 
 namespace Soilution.DataService.DataRepository.Models
 {
-    public class SoilQualityDataRecord : DataRecordBase
+    public class SoilQualityDataRecord : QueryResultObject
     {
         public int Id { get; private set; }
         public string DeviceId { get; set; } = string.Empty;

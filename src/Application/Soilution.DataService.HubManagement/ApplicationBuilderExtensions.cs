@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Soilution.DataService.HubManagement.Processors;
-using Soilution.DataService.HubManagement.Processors;
 
 namespace Soilution.DataService.HubManagement
 {

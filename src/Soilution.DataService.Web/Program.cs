@@ -1,7 +1,7 @@
-using Soilution.DataService.SqlRepository;
 using Soilution.DataService.AirQualityProcessing;
 using Soilution.DataService.SoilQualityProcessing;
 using Soilution.DataService.HubManagement;
+using Soilution.DataService.DatabaseAccess;
 using NLog.Web;
 using NLog;
 
@@ -23,7 +23,6 @@ try
     builder.Services.RegisterAirQualityProcessingApps();
     builder.Services.RegisterHubManagementApps();
     builder.Services.SetupSQLRepositories(builder.Configuration);
-    //builder.Services.SetupMockedRepositories();
 
     // Logging setup
     builder.Logging.ClearProviders();

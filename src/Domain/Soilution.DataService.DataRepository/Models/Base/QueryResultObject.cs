@@ -5,7 +5,7 @@ namespace Soilution.DataService.DataRepository.Models.Base
     /// <summary>
     /// Base class for database records.
     /// </summary>
-    public abstract class DataRecordBase
+    public abstract class QueryResultObject
     {
         /// <summary>
         /// Populates properties from a data reader.

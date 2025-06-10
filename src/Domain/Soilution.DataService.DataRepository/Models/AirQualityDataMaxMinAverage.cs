@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Soilution.DataService.DataRepository.Models
 {
-    public class AirQualityDataMaxMinAverage : DataRecordBase
+    public class AirQualityDataMaxMinAverage : QueryResultObject
     {
         public double MaximumHumidityPercentage { get; set; }
         public double MinimumHumidityPercentage { get; set; }

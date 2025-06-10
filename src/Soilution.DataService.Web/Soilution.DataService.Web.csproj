@@ -21,7 +21,7 @@
     <ProjectReference Include="..\Application\Soilution.DataService.AirQualityProcessing\Soilution.DataService.AirQualityProcessing.csproj" />
     <ProjectReference Include="..\Application\Soilution.DataService.HubManagement\Soilution.DataService.HubManagement.csproj" />
     <ProjectReference Include="..\Application\Soilution.DataService.SoilQualityProcessing\Soilution.DataService.SoilQualityProcessing.csproj" />
-    <ProjectReference Include="..\Database\Soilution.DataService.SqlDatabase\Soilution.DataService.SqlDatabase.csproj" />
+    <ProjectReference Include="..\Database\Soilution.DataService.DatabaseAccess\Soilution.DataService.DatabaseAccess.csproj" />
     <ProjectReference Include="..\UI\Soilution.DataService.DataAnalyticsApi\Soilution.DataService.DataAnalyticsApi.csproj" />
     <ProjectReference Include="..\UI\Soilution.DataService.DataManagementApi\Soilution.DataService.DataManagementApi.csproj" />
     <ProjectReference Include="..\UI\Soilution.DataService.HubManagementApi\Soilution.DataService.HubManagementApi.csproj" />

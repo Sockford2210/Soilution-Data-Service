@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Soilution.DataService.DataRepository.Models
 {
-    public class DataHubRecord : DataRecordBase
+    public class DataHubRecord : QueryResultObject
     {
         public int Id { get; set; } = -1;
         public string Name { get; set; } = string.Empty;

@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.UnitT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{4A2ED177-3557-4647-9B84-47944392416B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.SqlDatabase", "src\Database\Soilution.DataService.SqlDatabase\Soilution.DataService.SqlDatabase.csproj", "{665F395F-EEF1-4ABD-B113-1248C32A7A31}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solution.DataService.UnitTests.AirQualityProcessing", "src\Tests\Solution.DataService.UnitTests.AirQualityProcessing\Solution.DataService.UnitTests.AirQualityProcessing.csproj", "{E3D73970-D971-44C7-B559-0C08C532F443}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.AirQualityProcessing", "src\Application\Soilution.DataService.AirQualityProcessing\Soilution.DataService.AirQualityProcessing.csproj", "{DA0ADC33-0C69-463A-8C0B-B27822E0B491}"
@@ -29,15 +27,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.SoilQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.HubManagement", "src\Application\Soilution.DataService.HubManagement\Soilution.DataService.HubManagement.csproj", "{137857DE-D033-4AD7-83E1-3C2333F7DE39}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.MockedData", "src\Database\Soilution.DataService.MockedData\Soilution.DataService.MockedData.csproj", "{65909764-35AA-42FA-B879-3A59C53E34DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solution.DataService.UnitTests.SoilQualityProcessing", "src\Tests\Solution.DataService.UnitTests.SoilQualityProcessing\Solution.DataService.UnitTests.SoilQualityProcessing.csproj", "{63689C62-A473-4A9A-B304-49277B77B2A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solution.DataService.UnitTests.SoilQualityProcessing", "src\Tests\Solution.DataService.UnitTests.SoilQualityProcessing\Solution.DataService.UnitTests.SoilQualityProcessing.csproj", "{63689C62-A473-4A9A-B304-49277B77B2A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DataManagementApi", "src\UI\Soilution.DataService.DataManagementApi\Soilution.DataService.DataManagementApi.csproj", "{14594849-A424-400E-B0ED-7AC70268A847}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.HubManagementApi", "src\UI\Soilution.DataService.HubManagementApi\Soilution.DataService.HubManagementApi.csproj", "{B909E5F6-2817-4960-85C4-293811A906F4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DataAnalyticsApi", "src\UI\Soilution.DataService.DataAnalyticsApi\Soilution.DataService.DataAnalyticsApi.csproj", "{DE37FE13-9DAE-48FF-B6D2-22DEC7E28019}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.DatabaseAccess", "src\Database\Soilution.DataService.DatabaseAccess\Soilution.DataService.DatabaseAccess.csproj", "{0FED431A-75F7-4FA1-A872-456E246AE39E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{9FF609FC-9036-46AF-B6B6-8007347D632C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Soilution.DataService.UnitTests.DatabaseAccess", "src\Tests\Database\Soilution.DataService.UnitTests.DatabaseAccess\Soilution.DataService.UnitTests.DatabaseAccess.csproj", "{10409A9C-A388-4787-B5DA-5DBB19C2E997}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{EF6232B8-6E61-4145-906F-A20F784A84A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,10 +61,6 @@ Global
 		{EC99989D-FA35-45A6-A861-16CB00C799C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC99989D-FA35-45A6-A861-16CB00C799C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC99989D-FA35-45A6-A861-16CB00C799C6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{665F395F-EEF1-4ABD-B113-1248C32A7A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{665F395F-EEF1-4ABD-B113-1248C32A7A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{665F395F-EEF1-4ABD-B113-1248C32A7A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{665F395F-EEF1-4ABD-B113-1248C32A7A31}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3D73970-D971-44C7-B559-0C08C532F443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3D73970-D971-44C7-B559-0C08C532F443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3D73970-D971-44C7-B559-0C08C532F443}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -77,10 +77,6 @@ Global
 		{137857DE-D033-4AD7-83E1-3C2333F7DE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{137857DE-D033-4AD7-83E1-3C2333F7DE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{137857DE-D033-4AD7-83E1-3C2333F7DE39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65909764-35AA-42FA-B879-3A59C53E34DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65909764-35AA-42FA-B879-3A59C53E34DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65909764-35AA-42FA-B879-3A59C53E34DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65909764-35AA-42FA-B879-3A59C53E34DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{63689C62-A473-4A9A-B304-49277B77B2A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{63689C62-A473-4A9A-B304-49277B77B2A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63689C62-A473-4A9A-B304-49277B77B2A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -97,23 +93,33 @@ Global
 		{DE37FE13-9DAE-48FF-B6D2-22DEC7E28019}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE37FE13-9DAE-48FF-B6D2-22DEC7E28019}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE37FE13-9DAE-48FF-B6D2-22DEC7E28019}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FED431A-75F7-4FA1-A872-456E246AE39E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FED431A-75F7-4FA1-A872-456E246AE39E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FED431A-75F7-4FA1-A872-456E246AE39E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FED431A-75F7-4FA1-A872-456E246AE39E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10409A9C-A388-4787-B5DA-5DBB19C2E997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10409A9C-A388-4787-B5DA-5DBB19C2E997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10409A9C-A388-4787-B5DA-5DBB19C2E997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10409A9C-A388-4787-B5DA-5DBB19C2E997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7C689488-9F84-423B-A74A-C51ED7203CE7} = {EB4D921B-FB5B-44F7-9B8D-C786ACE9EF0D}
-		{EC99989D-FA35-45A6-A861-16CB00C799C6} = {4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}
-		{665F395F-EEF1-4ABD-B113-1248C32A7A31} = {4A2ED177-3557-4647-9B84-47944392416B}
-		{E3D73970-D971-44C7-B559-0C08C532F443} = {4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}
+		{EC99989D-FA35-45A6-A861-16CB00C799C6} = {EF6232B8-6E61-4145-906F-A20F784A84A2}
+		{E3D73970-D971-44C7-B559-0C08C532F443} = {EF6232B8-6E61-4145-906F-A20F784A84A2}
 		{DA0ADC33-0C69-463A-8C0B-B27822E0B491} = {96FD2E37-BB0E-43C5-BC5D-9966C9CDA882}
 		{A4A3CB14-AE99-44F5-812C-34AE738C53CA} = {96FD2E37-BB0E-43C5-BC5D-9966C9CDA882}
 		{137857DE-D033-4AD7-83E1-3C2333F7DE39} = {96FD2E37-BB0E-43C5-BC5D-9966C9CDA882}
-		{65909764-35AA-42FA-B879-3A59C53E34DB} = {4A2ED177-3557-4647-9B84-47944392416B}
-		{63689C62-A473-4A9A-B304-49277B77B2A4} = {4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}
+		{63689C62-A473-4A9A-B304-49277B77B2A4} = {EF6232B8-6E61-4145-906F-A20F784A84A2}
 		{14594849-A424-400E-B0ED-7AC70268A847} = {CBD44D8B-407A-4A81-8AE8-1B2A156ED460}
 		{B909E5F6-2817-4960-85C4-293811A906F4} = {CBD44D8B-407A-4A81-8AE8-1B2A156ED460}
 		{DE37FE13-9DAE-48FF-B6D2-22DEC7E28019} = {CBD44D8B-407A-4A81-8AE8-1B2A156ED460}
+		{0FED431A-75F7-4FA1-A872-456E246AE39E} = {4A2ED177-3557-4647-9B84-47944392416B}
+		{9FF609FC-9036-46AF-B6B6-8007347D632C} = {4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}
+		{10409A9C-A388-4787-B5DA-5DBB19C2E997} = {9FF609FC-9036-46AF-B6B6-8007347D632C}
+		{EF6232B8-6E61-4145-906F-A20F784A84A2} = {4AC52D32-EC9B-44F4-9CB5-38F75B3EC18F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {378D4E4B-7DA2-4A9B-A80C-697BE92BB4F4}
