@@ -1,6 +1,10 @@
 ﻿services:
+  sql_server:
+    extends:
+      file: docker-compose-db.yml
+      service: sql_server
   web_api:
-    build: ./src/Soilution.DataService.Web
+    build: ./src
     container_name: web_api_application
     ports:
       - "5000:8080"

@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # NLog internal log
 nlogInternalLog.txt
+
+# Environment Variables
+.env

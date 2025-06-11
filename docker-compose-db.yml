@@ -1,10 +1,11 @@
 ﻿services:
   sql_server:
+    env_file: ".env"
     build:
       context: ./database
       dockerfile: Dockerfile
       args:
-        SA_PASSWORD: "#Password1234"
+        SA_PASSWORD: ${SQL_SERVER_SA_PASSWORD}
     container_name: sql_server2022
     ports:
       - "1439:1433"
