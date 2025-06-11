@@ -14,6 +14,7 @@ namespace Soilution.DataService.DataRepository.Models
         {
             if (int.TryParse(reader[nameof(Id)]?.ToString(), out int id)) { Id = id; }
             Name = reader[nameof(Name)]?.ToString();
+            if (DateTime.TryParse(reader[nameof(DateCreated)].ToString(), out DateTime dateCreated)) { DateCreated = dateCreated; }
         }
     }
 }
