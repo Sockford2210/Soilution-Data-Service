@@ -3,7 +3,7 @@ This is ASP.NET Core application for the storage/processing/retrieval of air and
 
 #Entity Relationship
 ```mermaid
-erDiagram;
+erDiagram
     DataHub ||--o{ AirQualityMeasurementDevice : has
     DataHub ||--o{ SoilQualityMeasurementDevice : has
     AirQualityMeasurementDevice ||--o{ AirQualityReading : has
