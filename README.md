@@ -1,7 +1,7 @@
-#Overview
+# Overview
 This is ASP.NET Core application for the storage/processing/retrieval of air and soil quality data in a MSSQL Server database.
 
-#Entity Relationship
+# Entity Relationship
 ```mermaid
 erDiagram
     DataHub ||--o{ AirQualityMeasurementDevice : has
@@ -12,10 +12,10 @@ erDiagram
     Account ||--|| Credentials : contains
 ```
 
-#Versions
+# Versions
 .Net - 8
 
-#Running Instructions
+# Running Instructions
 1. Create .env file in solution root with following variables:
   - SQL_SERVER_SA_PASSWORD - SA password for sql server
 2. In a terminal run the following ```.\StartContainers.ps``` with the following optional parameters:
