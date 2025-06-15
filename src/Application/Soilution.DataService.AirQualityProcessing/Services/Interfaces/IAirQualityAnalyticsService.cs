@@ -4,6 +4,6 @@ namespace Soilution.DataService.AirQualityProcessing.Services.Interfaces
 {
     public interface IAirQualityAnalyticsService
     {
-        Task<AirQualityStatistcs> GetAirQualityStatistics(DateTime? fromDateTime = null);
+        Task<AirQualityStatistcsDto> GetAirQualityStatistics(DateTime? fromDateTime = null, DateTime? toDateTime = null);
     }
 }

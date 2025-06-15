@@ -1,7 +1,8 @@
 ﻿namespace Soilution.DataService.SoilQualityProcessing.Models
 {
-    public class IncomingSoilQualityReading
+    public class SoilQualityReadingDto
     {
+        public int Id { get; set; }
         public string DeviceId { get; set; } = "Unknown";
         public DateTime Timestamp { get; set; }
         public double MoisturePercentage { get; set; }

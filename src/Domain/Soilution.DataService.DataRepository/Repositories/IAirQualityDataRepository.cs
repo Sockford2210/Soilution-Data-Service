@@ -28,7 +28,7 @@ namespace Soilution.DataService.DataRepository.Repositories
         /// Retrieves the maximum humidity, temperature and co2 concentration from the air quality records stored in the database.
         /// Only takes into account data from a specific point.
         /// </summary>
-        Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataSinceTimemstamp(DateTime fromTimestamp);
+        Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataInTimeRange(DateTime fromTimestamp, DateTime toTimestamp);
 
         /// <summary>
         /// Retrieves the total number of air quality records submitted for by a specified device.

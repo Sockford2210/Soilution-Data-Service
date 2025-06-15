@@ -29,7 +29,7 @@ namespace Solution.DataService.UnitTests.SoilQualityProcessing
 
                 var sut = CreateSubjectUnderTest(soilDataRepository: soilDataRepository);
 
-                var soilQuality = new IncomingSoilQualityReading();
+                var soilQuality = new SoilQualityReadingDto();
                 var actualException = Assert.ThrowsAsync<Exception>(async () => await sut.SubmitSoilDataReading(soilQuality));
                 Assert.That(actualException, Is.EqualTo(expectedException));
             }
@@ -37,7 +37,7 @@ namespace Solution.DataService.UnitTests.SoilQualityProcessing
             [Test]
             public async Task DataRepositoryDoesNotThrowException_DoesNothing()
             {
-                var soilQuality = new IncomingSoilQualityReading();
+                var soilQuality = new SoilQualityReadingDto();
                 var sut = CreateSubjectUnderTest();
                 await sut.SubmitSoilDataReading(soilQuality);
 

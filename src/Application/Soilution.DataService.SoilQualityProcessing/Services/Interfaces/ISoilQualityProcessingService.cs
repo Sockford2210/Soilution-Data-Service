@@ -4,6 +4,6 @@ namespace Soilution.DataService.SoilQualityProcessing.Services
 {
     public interface ISoilQualityProcessingService
     {
-        Task SubmitSoilDataReading(IncomingSoilQualityReading soilData);
+        Task SubmitSoilDataReading(SoilQualityReadingDto soilData);
     }
 }

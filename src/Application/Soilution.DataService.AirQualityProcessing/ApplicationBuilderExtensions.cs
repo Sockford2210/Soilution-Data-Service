@@ -10,6 +10,7 @@ namespace Soilution.DataService.AirQualityProcessing
         {
             services.AddScoped<IAirQualityProcessorService, AirQualityProcessorService>();
             services.AddScoped<IAirQualityAnalyticsService, AirQualityAnalyticsService>();
+            services.AddScoped<IAirQualityDeviceService, AirQualityDeviceService>();
         }
     }
 }

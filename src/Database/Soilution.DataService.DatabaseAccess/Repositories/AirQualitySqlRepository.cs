@@ -19,6 +19,8 @@ namespace Soilution.DataService.DatabaseAccess.Repositories
         private const string TEMERATURE_PARAMETER = "@Temperature";
         private const string CO2_PARAMETER = "@CO2";
         private const string READING_COUNT_PARAMETER = "@ReadingCount";
+        private const string START_TIMESTAMP_PARAMETER = "@StartTimeStamp";
+        private const string END_TIMESTAMP_PARAMETER = "@EndTimeStamp";
 
         public AirQualitySqlRepository(ICommandRunner commandRunner)
         {
@@ -99,7 +101,7 @@ namespace Soilution.DataService.DatabaseAccess.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataSinceTimemstamp(DateTime fromTimestamp)
+        public async Task<AirQualityDataMaxMinAverage> GetMinMaxAverageAirQualityDataInTimeRange(DateTime fromTimestamp, DateTime toTimestamp)
         {
             string queryStatement = $"SELECT" +
                     $" MAX({nameof(AirQualityDataRecord.HumidityPercentage)}) AS {nameof(AirQualityDataMaxMinAverage.MaximumHumidityPercentage)}" +
@@ -112,11 +114,13 @@ namespace Soilution.DataService.DatabaseAccess.Repositories
                     $", MIN({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.MinimumCO2PPM)}" +
                     $", AVG({nameof(AirQualityDataRecord.CO2PPM)}) AS {nameof(AirQualityDataMaxMinAverage.AverageCO2PPM)}" +
                     $" FROM  {AIR_QUALITY_TABLE_NAME}" +
-                    $" WHERE {nameof(AirQualityDataRecord.Timestamp)} >= {TIMESTAMP_PARAMETER}";
+                    $" WHERE {nameof(AirQualityDataRecord.Timestamp)} >= {START_TIMESTAMP_PARAMETER} " +
+                    $" AND {nameof(AirQualityDataRecord.Timestamp)} < {END_TIMESTAMP_PARAMETER}";
 
             var parameters = new Dictionary<string, object>
             {
-                { TIMESTAMP_PARAMETER, fromTimestamp }
+                { START_TIMESTAMP_PARAMETER, fromTimestamp },
+                { END_TIMESTAMP_PARAMETER, toTimestamp }
             };
 
             var dBCommand = new DatabaseCommand(queryStatement, parameters);

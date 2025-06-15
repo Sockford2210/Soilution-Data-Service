@@ -54,7 +54,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
         };
         #endregion
 
-        private static IAirQualityProcessorService CreateSubjectUnderTest(Mock<IAirQualityDataRepository>? airDataRepository = null, 
+        private static AirQualityProcessorService CreateSubjectUnderTest(Mock<IAirQualityDataRepository>? airDataRepository = null, 
             Mock<IDataHubRepository>? dataDeviceRepository = null)
         {
             airDataRepository ??= new Mock<IAirQualityDataRepository>();
@@ -82,7 +82,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                 var sut = CreateSubjectUnderTest(airDataRepository: airDataRepository,
                     dataDeviceRepository: dataDeviceRepository);
 
-                var airQuality = new IncomingAirQualityReading();
+                var airQuality = new AirQualityReadingDto();
                 var actualException = Assert.ThrowsAsync<Exception>(async () 
                     => await sut.SubmitAirQualityReading(airQuality));
                 Assert.That(actualException, Is.EqualTo(expectedException));
@@ -92,7 +92,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
             public async Task DataRepositoryDoesNotThrowException_DoesNothing()
             {
                 var dataDeviceRepository = new Mock<IDataHubRepository>();
-                var airQuality = new IncomingAirQualityReading();
+                var airQuality = new AirQualityReadingDto();
 
                 dataDeviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
                     .ReturnsAsync(DefaultDataHubRecord);
@@ -154,17 +154,17 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                 var airDataRepository = new Mock<IAirQualityDataRepository>();
                 var testAirQualityRecord = DefaultAirQualityRecords[0];
                 var recordCount = 1;
-                var expectedAirQuality = new AirQualityReading
+                var expectedAirQuality = new AirQualityReadingDto
                 {
                     Id = testAirQualityRecord.Id,
-                    DeviceId = testAirQualityRecord.DeviceId,
+                    DeviceName = TEST_DEVICE_NAME,
                     Timestamp = testAirQualityRecord.Timestamp,
                     Co2ppm = testAirQualityRecord.CO2PPM,
                     HumidityPercentage = testAirQualityRecord.HumidityPercentage,
                     TemperatureCelcius = testAirQualityRecord.TemperatureCelcius
                 };
 
-                deviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                deviceRepository.Setup(x => x.GetDataDeviceRecordByName(TEST_DEVICE_NAME))
                     .ReturnsAsync(DefaultDataHubRecord);
                 airDataRepository.Setup(x => x.GetLatestAirQualityRecords(testAirQualityRecord.DeviceId, recordCount))
                     .ReturnsAsync(new List<AirQualityDataRecord> { testAirQualityRecord });
@@ -177,7 +177,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                 Assert.Multiple(() =>
                 {
                     Assert.That(result?.Id, Is.EqualTo(expectedAirQuality.Id));
-                    Assert.That(result?.DeviceId, Is.EqualTo(expectedAirQuality.DeviceId));
+                    Assert.That(result?.DeviceName, Is.EqualTo(expectedAirQuality.DeviceName));
                     Assert.That(result?.Timestamp, Is.EqualTo(expectedAirQuality.Timestamp));
                     Assert.That(result?.Co2ppm, Is.EqualTo(expectedAirQuality.Co2ppm));
                     Assert.That(result?.HumidityPercentage, Is.EqualTo(expectedAirQuality.HumidityPercentage));

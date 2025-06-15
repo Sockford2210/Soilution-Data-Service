@@ -13,7 +13,7 @@ namespace Soilution.DataService.SoilQualityProcessing.Services
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
         }
 
-        public async Task SubmitSoilDataReading(IncomingSoilQualityReading soilData)
+        public async Task SubmitSoilDataReading(SoilQualityReadingDto soilData)
         {
             var record = new SoilQualityDataRecord
             {

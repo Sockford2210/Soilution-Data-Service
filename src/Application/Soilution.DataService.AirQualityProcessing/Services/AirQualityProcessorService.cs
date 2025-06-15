@@ -17,7 +17,7 @@ namespace Soilution.DataService.AirQualityProcessing.Services
             _deviceRepository = deviceRepository ?? throw new ArgumentNullException(nameof(deviceRepository));
         }
 
-        public async Task SubmitAirQualityReading(IncomingAirQualityReading airQualityReading)
+        public async Task SubmitAirQualityReading(AirQualityReadingDto airQualityReading)
         {
             var dataDevice = await _deviceRepository.GetDataDeviceRecordByName(airQualityReading.DeviceName);
 
@@ -37,7 +37,7 @@ namespace Soilution.DataService.AirQualityProcessing.Services
             await _dataRepository.CreateNewAirQualityRecord(record);
         }
 
-        public async Task<IEnumerable<AirQualityReading>> GetLatestAirQualityReadings(string deviceName, int count)
+        public async Task<IEnumerable<AirQualityReadingDto>> GetLatestAirQualityReadings(string deviceName, int count)
         {
             var device = await _deviceRepository.GetDataDeviceRecordByName(deviceName);
 
@@ -50,10 +50,10 @@ namespace Soilution.DataService.AirQualityProcessing.Services
 
             var readings = await _dataRepository.GetLatestAirQualityRecords(deviceId, count);
 
-            var airQualityData = readings.Select(x => new AirQualityReading()
+            var airQualityData = readings.Select(x => new AirQualityReadingDto()
             {
                 Id = x.Id,
-                DeviceId = x.DeviceId,
+                DeviceName = device.Name,
                 Timestamp = x.Timestamp,
                 HumidityPercentage = x.HumidityPercentage,
                 TemperatureCelcius = x.TemperatureCelcius,

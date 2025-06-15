@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Soilution.DataService.DataManagementApi.Soil.Models;
 using Soilution.DataService.SoilQualityProcessing.Models;
 using Soilution.DataService.SoilQualityProcessing.Services;
 
@@ -21,8 +22,22 @@ namespace Soilution.DataService.DataManagementApi.Controllers
         {
             if (incomingReading.DeviceId == null) return BadRequest("Device Id cannot be null");
 
-            await _dataProcessor.SubmitSoilDataReading(incomingReading);
+            var soilQuality = new SoilQualityReadingDto
+            {
+                DeviceId = incomingReading.DeviceId,
+                MoisturePercentage = incomingReading.MoisturePercentage,
+                PHLevel = incomingReading.PHLevel,
+                SunlightLumens = incomingReading.SunlightLumens,
+                TemperatureCelcius = incomingReading.TemperatureCelcius,
+                Timestamp = incomingReading.Timestamp,
+            };
+            await _dataProcessor.SubmitSoilDataReading(soilQuality);
 
+            return Ok();
+        }
+
+        public async Task<IActionResult> NewDevice([FromBody] IncomingSoilQualityDevice incomingDevice)
+        {
             return Ok();
         }
     }

@@ -1,4 +1,4 @@
-﻿namespace Soilution.DataService.AirQualityProcessing.Models
+﻿namespace Soilution.DataService.DataManagementApi.Air.Models
 {
     public class IncomingAirQualityReading
     {

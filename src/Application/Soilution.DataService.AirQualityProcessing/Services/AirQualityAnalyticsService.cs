@@ -14,13 +14,14 @@ namespace Soilution.DataService.AirQualityProcessing.Services
         }
 
         /// <inheritdoc/>
-        public async Task<AirQualityStatistcs> GetAirQualityStatistics(DateTime? fromDateTime = null)
+        public async Task<AirQualityStatistcsDto> GetAirQualityStatistics(DateTime? fromDateTime = null, DateTime? toDateTime = null)
         {
+            toDateTime ??= DateTime.MinValue;
             var airQualityMaxMinAverage = fromDateTime == null
                 ? await _airQualityRepository.GetMinMaxAverageAirQualityData()
-                : await _airQualityRepository.GetMinMaxAverageAirQualityDataSinceTimemstamp(fromDateTime.Value);
+                : await _airQualityRepository.GetMinMaxAverageAirQualityDataInTimeRange(fromDateTime.Value, toDateTime.Value);
 
-            var airQualityStatistics = new AirQualityStatistcs
+            var airQualityStatistics = new AirQualityStatistcsDto
             {
                 MaximumHumidityPercentage = airQualityMaxMinAverage.MaximumHumidityPercentage,
                 MinimumHumidityPercentage = airQualityMaxMinAverage.MaximumHumidityPercentage,

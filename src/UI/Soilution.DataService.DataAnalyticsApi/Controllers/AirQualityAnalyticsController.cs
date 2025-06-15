@@ -17,7 +17,7 @@ namespace Soilution.DataService.DataAnalyticsApi.Controllers
 
         // GET: api/Analytics/AirQuality
         [HttpGet("Details")]
-        public async Task<ActionResult<AirQualityStatistcs>> Details()
+        public async Task<ActionResult<AirQualityStatistcsDto>> Details()
         {
             var result = await _analyticsService.GetAirQualityStatistics();
             return Ok(result);
