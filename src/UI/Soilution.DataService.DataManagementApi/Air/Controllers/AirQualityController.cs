@@ -45,7 +45,7 @@ namespace Soilution.DataService.DataManagementApi.Controllers
 
                 return Ok();
             }
-            catch (DeviceDoesNotExistException)
+            catch (ParentDeviceDoesNotExistException)
             {
                 var message = $"Device with name: {incomingReading.DeviceName} does not exist";
                 return BadRequest(message);
@@ -71,7 +71,7 @@ namespace Soilution.DataService.DataManagementApi.Controllers
 
                 return Ok(readings);
             }
-            catch (DeviceDoesNotExistException)
+            catch (ParentDeviceDoesNotExistException)
             {
                 var message = $"Device with name: {deviceName} does not exist";
                 return BadRequest(message);
@@ -102,7 +102,7 @@ namespace Soilution.DataService.DataManagementApi.Controllers
 
                 return Ok();
             }
-            catch (DeviceDoesNotExistException)
+            catch (ParentDeviceDoesNotExistException)
             {
                 var message = $"Hub with name: {incomingDevice.HubName} does not exist";
                 return BadRequest(message);

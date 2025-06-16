@@ -1,10 +1,4 @@
-using Moq;
-using Soilution.DataService.DataRepository.Models;
-using Soilution.DataService.DataRepository.Repositories;
-using Soilution.DataService.SoilQualityProcessing.Models;
-using Soilution.DataService.SoilQualityProcessing.Services;
-
-namespace Solution.DataService.UnitTests.SoilQualityProcessing
+namespace Soilution.DataService.UnitTests.SoilQualityProcessing
 {
     public class SoildQualityRecordProcessorTests
     {

@@ -8,10 +8,10 @@ namespace Soilution.DataService.AirQualityProcessing.Services
     internal class AirQualityProcessorService : IAirQualityProcessorService
     {
         private readonly IAirQualityDataRepository _dataRepository;
-        private readonly IDataHubRepository _deviceRepository;
+        private readonly IAirQualityDeviceRepository _deviceRepository;
 
-        public AirQualityProcessorService(IAirQualityDataRepository dataRepository, 
-            IDataHubRepository deviceRepository)
+        public AirQualityProcessorService(IAirQualityDataRepository dataRepository,
+            IAirQualityDeviceRepository deviceRepository)
         {
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
             _deviceRepository = deviceRepository ?? throw new ArgumentNullException(nameof(deviceRepository));
@@ -19,11 +19,11 @@ namespace Soilution.DataService.AirQualityProcessing.Services
 
         public async Task SubmitAirQualityReading(AirQualityReadingDto airQualityReading)
         {
-            var dataDevice = await _deviceRepository.GetDataDeviceRecordByName(airQualityReading.DeviceName);
+            var device = await _deviceRepository.GetDeviceByName(airQualityReading.DeviceName);
 
-            var deviceId = dataDevice.Exists 
-                ? dataDevice.Id
-                : await CreateNewDataDevice(airQualityReading.DeviceName);
+            var deviceId = device.Exists
+                ? device.Id
+                : throw new ParentDeviceDoesNotExistException(airQualityReading.DeviceName);
 
             var record = new AirQualityDataRecord
             {
@@ -39,14 +39,11 @@ namespace Soilution.DataService.AirQualityProcessing.Services
 
         public async Task<IEnumerable<AirQualityReadingDto>> GetLatestAirQualityReadings(string deviceName, int count)
         {
-            var device = await _deviceRepository.GetDataDeviceRecordByName(deviceName);
+            var device = await _deviceRepository.GetDeviceByName(deviceName);
 
-            if (!device.Exists)
-            {
-                throw new DeviceDoesNotExistException(deviceName);
-            }
-
-            var deviceId = device.Id;
+            var deviceId = device.Exists
+                ? device.Id
+                : throw new ParentDeviceDoesNotExistException(deviceName);
 
             var readings = await _dataRepository.GetLatestAirQualityRecords(deviceId, count);
 
@@ -61,17 +58,6 @@ namespace Soilution.DataService.AirQualityProcessing.Services
             }).ToList();
 
             return airQualityData;
-        }
-
-        private async Task<int> CreateNewDataDevice(string deviceName)
-        {
-            var dataDevice = new DataHubRecord
-            {
-                DateCreated = DateTime.Now,
-                Name = deviceName,
-            };
-
-            return await _deviceRepository.CreateDataDeviceRecord(dataDevice);
         }
     }
 }

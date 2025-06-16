@@ -1,8 +1,8 @@
 ﻿namespace Soilution.DataService.AirQualityProcessing.Exceptions
 {
-    public class DeviceDoesNotExistException : Exception
+    public class ParentDeviceDoesNotExistException : Exception
     {
-        public DeviceDoesNotExistException(string deviceName) :
+        public ParentDeviceDoesNotExistException(string deviceName) :
             base($"The device with name: '{deviceName}' does not exist.")
         { }
     }

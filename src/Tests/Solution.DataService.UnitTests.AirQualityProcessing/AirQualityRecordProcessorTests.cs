@@ -1,9 +1,4 @@
-﻿using Soilution.DataService.DataRepository.Repositories;
-using Soilution.DataService.DataRepository.Models;
-using Soilution.DataService.AirQualityProcessing.Services;
-using Soilution.DataService.AirQualityProcessing.Models;
-
-namespace Solution.DataService.UnitTests.AirQualityProcessing
+﻿namespace Soilution.DataService.UnitTests.AirQualityProcessing
 {
     public class AirQualityProcessorServiceTests
     {
@@ -13,7 +8,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
         #endregion
 
         #region Default Records
-        private static DataHubRecord DefaultDataHubRecord => new()
+        private static AirQualityDeviceRecord DefaultDataHubRecord => new()
         {
             Id = TEST_DEVICE_ID,
             DateCreated = DateTime.MinValue,
@@ -55,10 +50,10 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
         #endregion
 
         private static AirQualityProcessorService CreateSubjectUnderTest(Mock<IAirQualityDataRepository>? airDataRepository = null, 
-            Mock<IDataHubRepository>? dataDeviceRepository = null)
+            Mock<IAirQualityDeviceRepository>? dataDeviceRepository = null)
         {
             airDataRepository ??= new Mock<IAirQualityDataRepository>();
-            dataDeviceRepository ??= new Mock<IDataHubRepository>();
+            dataDeviceRepository ??= new Mock<IAirQualityDeviceRepository>();
 
             return new AirQualityProcessorService(airDataRepository.Object, dataDeviceRepository.Object);
         }
@@ -72,17 +67,21 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                 var airDataRepository = new Mock<IAirQualityDataRepository>();
                 var expectedException = new Exception("Expected Message");
 
+                var airQuality = new AirQualityReadingDto()
+                {
+                    DeviceName = TEST_DEVICE_NAME,
+                };
+
                 airDataRepository.Setup(x => x.CreateNewAirQualityRecord(It.IsAny<AirQualityDataRecord>()))
                     .Throws(expectedException);
 
-                var dataDeviceRepository = new Mock<IDataHubRepository>();
-                dataDeviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                var dataDeviceRepository = new Mock<IAirQualityDeviceRepository>();
+                dataDeviceRepository.Setup(x => x.GetDeviceByName(TEST_DEVICE_NAME))
                     .ReturnsAsync(DefaultDataHubRecord);
 
                 var sut = CreateSubjectUnderTest(airDataRepository: airDataRepository,
                     dataDeviceRepository: dataDeviceRepository);
 
-                var airQuality = new AirQualityReadingDto();
                 var actualException = Assert.ThrowsAsync<Exception>(async () 
                     => await sut.SubmitAirQualityReading(airQuality));
                 Assert.That(actualException, Is.EqualTo(expectedException));
@@ -91,10 +90,13 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
             [Test]
             public async Task DataRepositoryDoesNotThrowException_DoesNothing()
             {
-                var dataDeviceRepository = new Mock<IDataHubRepository>();
-                var airQuality = new AirQualityReadingDto();
+                var dataDeviceRepository = new Mock<IAirQualityDeviceRepository>();
+                var airQuality = new AirQualityReadingDto()
+                {
+                    DeviceName = TEST_DEVICE_NAME,
+                };
 
-                dataDeviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                dataDeviceRepository.Setup(x => x.GetDeviceByName(TEST_DEVICE_NAME))
                     .ReturnsAsync(DefaultDataHubRecord);
 
                 var sut = CreateSubjectUnderTest(dataDeviceRepository: dataDeviceRepository);
@@ -111,11 +113,11 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
             [Test]
             public void DataRepositoryThrowsException_ThrowsException()
             {
-                var deviceRepository = new Mock<IDataHubRepository>();
+                var deviceRepository = new Mock<IAirQualityDeviceRepository>();
                 var airDataRepository = new Mock<IAirQualityDataRepository>();
                 var expectedException = new Exception("Expected Message");
                 
-                deviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                deviceRepository.Setup(x => x.GetDeviceByName(TEST_DEVICE_NAME))
                     .ReturnsAsync(DefaultDataHubRecord);
                 airDataRepository.Setup(x => x.GetLatestAirQualityRecords(It.IsAny<int>(), It.IsAny<int>()))
                     .Throws(expectedException);
@@ -130,12 +132,12 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
             [Test]
             public async Task DataRepositoryReturnsResults_ReturnsSameNumberOfResults()
             {
-                var deviceRepository = new Mock<IDataHubRepository>();
+                var deviceRepository = new Mock<IAirQualityDeviceRepository>();
                 var airDataRepository = new Mock<IAirQualityDataRepository>();
 
                 int expectedRecordCount = DefaultAirQualityRecords.Count;
 
-                deviceRepository.Setup(x => x.GetDataDeviceRecordByName(It.IsAny<string>()))
+                deviceRepository.Setup(x => x.GetDeviceByName(TEST_DEVICE_NAME))
                     .ReturnsAsync(DefaultDataHubRecord);
                 airDataRepository.Setup(x => x.GetLatestAirQualityRecords(It.IsAny<int>(), expectedRecordCount))
                     .ReturnsAsync(DefaultAirQualityRecords);
@@ -150,7 +152,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
             [Test]
             public async Task DataRepositoryReturnsResult_ReturnsMatchingResults()
             {
-                var deviceRepository = new Mock<IDataHubRepository>();
+                var deviceRepository = new Mock<IAirQualityDeviceRepository>();
                 var airDataRepository = new Mock<IAirQualityDataRepository>();
                 var testAirQualityRecord = DefaultAirQualityRecords[0];
                 var recordCount = 1;
@@ -164,7 +166,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                     TemperatureCelcius = testAirQualityRecord.TemperatureCelcius
                 };
 
-                deviceRepository.Setup(x => x.GetDataDeviceRecordByName(TEST_DEVICE_NAME))
+                deviceRepository.Setup(x => x.GetDeviceByName(TEST_DEVICE_NAME))
                     .ReturnsAsync(DefaultDataHubRecord);
                 airDataRepository.Setup(x => x.GetLatestAirQualityRecords(testAirQualityRecord.DeviceId, recordCount))
                     .ReturnsAsync(new List<AirQualityDataRecord> { testAirQualityRecord });

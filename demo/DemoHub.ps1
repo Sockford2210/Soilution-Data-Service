@@ -6,20 +6,6 @@ param(
     [int] $NumberOfReadings = 100
 )
 
-$airQualityReadingUrl = "$HostName/api/AirData"
-$createHubUrl = "$HostName/api/DataHub"
-# $createDeviceUrl = "$HostName/api/AirData/device"
-
-Send-NewHub -Url $CreateHubUrl -HubName $HubName
-for($readings = 0; $readings -lt $NumberOfReadings; $readings++){
-    for ($devNum = 1; $devNum -le $NumberOfAirDevices; $devNum++) {
-        $deviceName = $HubName + $devNum.ToString()
-        Send-AirQualityReadings -Url $AirQualityReadingUrl -DeviceName $deviceName
-    }
-
-    Start-Sleep -Seconds $ReadingIntervalSeconds
-}
-
 function Send-AirQualityReadings{
     param(
         [string] $Url,
@@ -56,17 +42,37 @@ function Send-NewHub{
     Invoke-RestMethod -Method 'Post' -Uri $Url -Body ($body|ConvertTo-Json) -ContentType "application/json"
 }
 
-# function Send-NewDevice{
-#     param(
-#         [string] $Url,
-#         [string] $HubName,
-#         [string] $DeviceName
-#     )
+function Send-NewDevice{
+    param(
+        [string] $Url,
+        [string] $HubName,
+        [string] $DeviceName
+    )
 
-#     $body = @{
-#         "DeviceName" = $DeviceName
-#         "HubName" = $HubName
-#     }
+    $body = @{
+        "name" = $DeviceName
+        "hubName" = $HubName
+    }
 
-#     Invoke-RestMethod -Method 'Post' -Uri $Url -Body ($body|ConvertTo-Json) -ContentType "application/json"
-# }
+    Invoke-RestMethod -Method 'Post' -Uri $Url -Body ($body|ConvertTo-Json) -ContentType "application/json"
+}
+
+$airQualityReadingUrl = "$HostName/api/AirData"
+$createHubUrl = "$HostName/api/DataHub"
+$createDeviceUrl = "$HostName/api/AirData/device"
+
+Send-NewHub -Url $createHubUrl -HubName $HubName
+
+for($readings = 0; $readings -lt $NumberOfReadings; $readings++){
+    for ($devNum = 1; $devNum -le $NumberOfAirDevices; $devNum++) {
+        $deviceName = $HubName + $devNum.ToString()
+
+        if ($readings -eq 1){       
+            Send-NewDevice -Url $createDeviceUrl -HubName $HubName -DeviceName $deviceName
+        }
+
+        Send-AirQualityReadings -Url $airQualityReadingUrl -DeviceName $deviceName
+    }
+
+    Start-Sleep -Seconds $ReadingIntervalSeconds
+}

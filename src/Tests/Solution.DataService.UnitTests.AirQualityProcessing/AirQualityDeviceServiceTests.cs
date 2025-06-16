@@ -1,15 +1,4 @@
-﻿using Soilution.DataService.AirQualityProcessing.Exceptions;
-using Soilution.DataService.AirQualityProcessing.Models;
-using Soilution.DataService.AirQualityProcessing.Services;
-using Soilution.DataService.DataRepository.Models;
-using Soilution.DataService.DataRepository.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Solution.DataService.UnitTests.AirQualityProcessing
+﻿namespace Soilution.DataService.UnitTests.AirQualityProcessing
 {
     public class AirQualityDeviceServiceTests
     {
@@ -67,7 +56,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
 
                 await sut.CreateNewDevice(device);
 
-                Assert.True(true);
+                Assert.Pass();
             }
 
             public void HubDoesNotExist_ThrowsDeviceDoesNotExistException()
@@ -85,7 +74,7 @@ namespace Solution.DataService.UnitTests.AirQualityProcessing
                     HubName = TEST_HUB_NAME,
                 };
 
-                Assert.ThrowsAsync<DeviceDoesNotExistException>(() => sut.CreateNewDevice(device));
+                Assert.ThrowsAsync<ParentDeviceDoesNotExistException>(() => sut.CreateNewDevice(device));
             }
         }
     }

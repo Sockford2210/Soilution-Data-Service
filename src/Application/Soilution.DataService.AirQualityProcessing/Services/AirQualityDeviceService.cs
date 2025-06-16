@@ -21,11 +21,14 @@ namespace Soilution.DataService.AirQualityProcessing.Services
         {
             var hubRecord = await _hubRepository.GetDataDeviceRecordByName(newDevice.HubName);
 
-            if (!hubRecord.Exists) throw new DeviceDoesNotExistException(newDevice.HubName);
+            var hubId = hubRecord.Exists
+                ? hubRecord.Id 
+                : throw new ParentDeviceDoesNotExistException(newDevice.HubName);
 
             var record = new AirQualityDeviceRecord
             {
-                HubId = hubRecord.Id,
+                Name = newDevice.Name,
+                HubId = hubId,
                 DateCreated = DateTime.UtcNow,
             };
 

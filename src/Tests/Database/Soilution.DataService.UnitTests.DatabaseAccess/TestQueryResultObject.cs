@@ -1,7 +1,4 @@
-﻿using Soilution.DataService.DataRepository.Models.Base;
-using System.Data;
-
-namespace Soilution.DataService.UnitTests.DatabaseAccess
+﻿namespace Soilution.DataService.UnitTests.DatabaseAccess
 {
     internal class TestQueryResultObject : QueryResultObject
     {

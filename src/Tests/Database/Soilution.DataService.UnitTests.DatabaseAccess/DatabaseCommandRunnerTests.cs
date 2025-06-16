@@ -1,9 +1,3 @@
-using Microsoft.Extensions.Logging;
-using Moq;
-using Soilution.DataService.DatabaseAccess.Accessor;
-using Soilution.DataService.DatabaseAccess.CommandExecution;
-using System.Data;
-
 namespace Soilution.DataService.UnitTests.DatabaseAccess
 {
     public class DatabaseCommandRunnerTests
@@ -55,11 +49,11 @@ namespace Soilution.DataService.UnitTests.DatabaseAccess
 
                 await sut.ExecuteCommandWithNoReturnData(databaseCommand);
 
-                Assert.True(true);
+                Assert.Pass();
             }
 
             [Test]
-            public async Task ExecutionThrowsException_MethodReThrows()
+            public void ExecutionThrowsException_MethodReThrows()
             {
                 var databaseCommand = CreateExampleDatabaseCommand();
                 var expectedException = new Exception("Test message");
@@ -83,11 +77,11 @@ namespace Soilution.DataService.UnitTests.DatabaseAccess
 
                 await sut.ExecuteCommandWithSingularOutputValue<int>(databaseCommand);
 
-                Assert.True(true);
+                Assert.Pass();
             }
 
             [Test]
-            public async Task ExecutionThrowsException_MethodReThrows()
+            public void ExecutionThrowsException_MethodReThrows()
             {
                 var databaseCommand = CreateExampleDatabaseCommand();
                 var expectedException = new Exception("Test message");

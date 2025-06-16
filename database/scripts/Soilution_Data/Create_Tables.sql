@@ -9,6 +9,7 @@ CREATE TABLE DataHubs (
 
 CREATE TABLE AirQualityDevice (
 	Id INT IDENTITY(1,1),
+	Name VARCHAR(255),
 	HubId INT NOT NULL,
 	DateCreated DATETIME NOT NULL,
 	PRIMARY KEY (Id),
