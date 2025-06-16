@@ -36,9 +36,9 @@ namespace Soilution.DataService.DataManagementApi.Controllers
             return Ok();
         }
 
-        public async Task<IActionResult> NewDevice([FromBody] IncomingSoilQualityDevice incomingDevice)
-        {
-            return Ok();
-        }
+        //public async Task<IActionResult> NewDevice([FromBody] IncomingSoilQualityDevice incomingDevice)
+        //{
+        //    return Ok();
+        //}
     }
 }
