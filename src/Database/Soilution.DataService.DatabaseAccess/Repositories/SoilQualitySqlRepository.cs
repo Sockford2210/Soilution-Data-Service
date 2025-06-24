@@ -8,7 +8,7 @@ namespace Soilution.DataService.DatabaseAccess.Repositories
     /// <summary>
     /// SQL database repository for soil quality data.
     /// </summary>
-    internal class SoilSQLRepository : ISoilDataRepository
+    internal class SoilQualitySqlRepository : ISoilQualityDataRepository
     {
         private readonly ICommandRunner _commandRunner;
 
@@ -19,7 +19,7 @@ namespace Soilution.DataService.DatabaseAccess.Repositories
         private const string TEMPERATURE_PARAMETER = "@Temperature";
         private const string SUNLIGHT_PARAMETER = "@Sunlight";
 
-        public SoilSQLRepository(ICommandRunner commandRunner)
+        public SoilQualitySqlRepository(ICommandRunner commandRunner)
         {
             _commandRunner = commandRunner ?? throw new ArgumentNullException(nameof(commandRunner));
         }

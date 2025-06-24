@@ -2,9 +2,9 @@ namespace Soilution.DataService.UnitTests.SoilQualityProcessing
 {
     public class SoildQualityRecordProcessorTests
     {
-        private static SoilQualityProcessingService CreateSubjectUnderTest(Mock<ISoilDataRepository>? soilDataRepository = null)
+        private static SoilQualityProcessingService CreateSubjectUnderTest(Mock<ISoilQualityDataRepository>? soilDataRepository = null)
         {
-            soilDataRepository ??= new Mock<ISoilDataRepository>();
+            soilDataRepository ??= new Mock<ISoilQualityDataRepository>();
 
             return new SoilQualityProcessingService(soilDataRepository.Object);
         }
@@ -15,7 +15,7 @@ namespace Soilution.DataService.UnitTests.SoilQualityProcessing
             [Test]
             public void DataRepositoryThrowsException_ThrowsException()
             {
-                var soilDataRepository = new Mock<ISoilDataRepository>();
+                var soilDataRepository = new Mock<ISoilQualityDataRepository>();
                 var expectedException = new Exception("Expected Message");
 
                 soilDataRepository.Setup(x => x.CreateNewSoilRecord(It.IsAny<SoilQualityDataRecord>()))

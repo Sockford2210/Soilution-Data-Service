@@ -17,7 +17,7 @@ namespace Soilution.DataService.DatabaseAccess
 
             services.AddScoped<IAirQualityDataRepository, AirQualitySqlRepository>();
             services.AddScoped<IAirQualityDeviceRepository, AirQualityDeviceSqlRepository>();
-            services.AddScoped<ISoilDataRepository, SoilSQLRepository>();
+            services.AddScoped<ISoilQualityDataRepository, SoilQualitySqlRepository>();
             services.AddScoped<ISoilQualityDeviceRepository, SoilQualityDeviceSqlRepository>();
             services.AddScoped<IDataHubRepository, DataHubSqlRepository>();
 

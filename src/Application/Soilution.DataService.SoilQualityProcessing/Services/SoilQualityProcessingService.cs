@@ -6,9 +6,9 @@ namespace Soilution.DataService.SoilQualityProcessing.Services
 {
     internal class SoilQualityProcessingService : ISoilQualityProcessingService
     {
-        private readonly ISoilDataRepository _dataRepository;
+        private readonly ISoilQualityDataRepository _dataRepository;
 
-        public SoilQualityProcessingService(ISoilDataRepository dataRepository)
+        public SoilQualityProcessingService(ISoilQualityDataRepository dataRepository)
         {
             _dataRepository = dataRepository ?? throw new ArgumentNullException(nameof(dataRepository));
         }

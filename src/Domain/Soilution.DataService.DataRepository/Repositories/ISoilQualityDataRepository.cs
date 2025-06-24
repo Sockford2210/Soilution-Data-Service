@@ -5,7 +5,7 @@ namespace Soilution.DataService.DataRepository.Repositories
     /// <summary>
     /// Database repository for soil quality data.
     /// </summary>
-    public interface ISoilDataRepository
+    public interface ISoilQualityDataRepository
     {
         /// <summary>
         /// Creates a new soil quality data record in the database.
